@@ -160,13 +160,13 @@ for dirname, _ in subdirs_with_dates:
 
 ### [comparison-of-object-detection-models](https://github.com/nobodyme/auto-research/tree/main/comparison-of-object-detection-models) (2026-01-05)
 
-Evaluating object detection models for real-time, low-latency scenarios, this project benchmarks YOLOv8, YOLOv10, YOLOv11, and RT-DETR using both COCO and RF100-VL datasets. Each model is assessed for accuracy (mAP), inference speed (latency, FPS), memory footprint, and versatility (fine-tuning, batch processing). Notably, YOLOv10 achieves the best latency-to-accuracy ratio, outperforming transformer-based RT-DETR in speed while remaining competitive in precision, whereas RT-DETR excels in handling complex scenes. The methodology incorporates robust benchmarking scripts, automated annotation, and visualization for direct metric comparison, supporting both PyTorch and CUDA environments. Full results and model management features are available via [Ultralytics comparison tools](https://docs.ultralytics.com/compare/) and the [YOLOv10 repository](https://github.com/THU-MIG/yolov10).
+Delivering a thorough head-to-head analysis of modern object detection models, this project benchmarks YOLOv8, YOLOv10, YOLOv11, RT-DETR, and RF-DETR across both COCO and RF100-VL datasets, targeting low-latency, near real-time deployment. Performance metrics such as mean Average Precision (mAP), frames per second (FPS), and inference latency are compared graphically, helping pinpoint optimal models for balanced speed and accuracy. Notably, transformer-based RF-DETR models lead in COCO mAP, while YOLOv10 sets a new standard in low and stable latency. All evaluated models support fine-tuning for custom domains, with results and code accessible for reproducible experimentation.
 
-**Key findings:**
-- YOLOv10 offers up to 1.8× faster inference than RT-DETR with similar accuracy, and uses significantly fewer parameters.
-- YOLOv8 remains a balanced baseline for speed, accuracy, and ease of deployment.
-- RT-DETR is preferred for complex detection tasks requiring global context, despite higher latency.
-- All models support transfer learning, enabling adaptation to custom datasets and domains.
+Key findings:
+- [RF-DETR](https://github.com/roboflow/rf-detr) achieves the highest accuracy (54.7% mAP) at real-time speeds; RF-DETR-N reaches 2.32ms latency.
+- [YOLOv10](https://github.com/THU-MIG/yolov10) is 1.8× faster than RT-DETR-R18 with similar accuracy and offers stable latency.
+- YOLOv8 combines proven stability and documentation, while RT-DETR excels in complex scene understanding.
+- All models support batch detection, automated annotation, and robust visualization for efficient workflow integration.
 
 ### [exploring-cookies](https://github.com/nobodyme/auto-research/tree/main/exploring-cookies) (2026-01-05)
 
