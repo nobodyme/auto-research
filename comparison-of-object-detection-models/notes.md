@@ -46,6 +46,9 @@ Requirements:
    - SOTA on COCO benchmark
    - Designed specifically for fine-tuning
    - Forms Pareto frontier for accuracy/speed trade-off
+   - RF-DETR-M: 73.6 AP₅₀, 54.7 AP₅₀:₉₅ on COCO
+   - RF-DETR-N: 67.6 AP₅₀, 48.4 AP₅₀:₉₅ with only 2.32ms latency
+   - Optimized for inference with up to 2× speedup
 
 ### Key Findings from Research:
 - YOLOv10 removes NMS step for lower latency
@@ -207,11 +210,49 @@ Requirements:
    - Real-time detection demo
    - Video processing support
 
+## RF-DETR Integration (2026-01-05)
+
+### Added RF-DETR Support
+
+Integrated Roboflow's RF-DETR (Real-time Detection Transformer) into the comparison framework:
+
+**Implementation Details:**
+- Created `RFDETRWrapper` class to provide unified interface with YOLO models
+- Supports three variants: Nano (N), Small (S), Medium (M)
+- Automatic inference optimization (up to 2× speedup)
+- Compatible with existing benchmark and detection infrastructure
+
+**Wrapper Features:**
+- Translates RF-DETR API to match YOLO interface
+- Handles image loading and preprocessing
+- Converts detection results to YOLO-compatible format
+- Provides COCO class name mapping
+
+**Model Variants Added:**
+1. `rfdetr-n` - 30.5M params, 2.32ms latency @ 384×384
+2. `rfdetr-s` - 32.1M params, 3.52ms latency @ 512×512
+3. `rfdetr-m` - 33.7M params, 4.52ms latency @ 576×576
+
+**Performance Highlights (from Roboflow):**
+- RF-DETR-M: 73.6% AP₅₀, 54.7% AP₅₀:₉₅ on COCO
+- RF-DETR-S: 72.1% AP₅₀, 53.0% AP₅₀:₉₅ on COCO
+- RF-DETR-N: 67.6% AP₅₀, 48.4% AP₅₀:₉₅ on COCO
+
+**Testing:**
+- Added comprehensive tests for all RF-DETR variants
+- Model loading and initialization tests
+- Parameter count verification
+- Model family identification tests
+
+**Visualization:**
+- Added RF-DETR color coding (orange/gold) in efficiency frontier plots
+- Star marker (*) for easy identification
+
 ## Conclusion
 
 Successfully implemented a comprehensive object detection model comparison framework that:
 
-✅ Compares 4 model families (YOLOv8, YOLOv10, YOLOv11, RT-DETR)
+✅ Compares 5 model families (YOLOv8, YOLOv10, YOLOv11, RT-DETR, **RF-DETR**)
 ✅ Evaluates on COCO benchmark with mAP metrics
 ✅ Measures latency with detailed statistics
 ✅ Verifies fine-tuning capability
@@ -219,5 +260,6 @@ Successfully implemented a comprehensive object detection model comparison frame
 ✅ Includes batch detection script with best model
 ✅ Follows TDD with comprehensive test suite
 ✅ Fully documented with usage examples
+✅ **Integrated Roboflow's SOTA RF-DETR model**
 
 The framework is extensible and production-ready for evaluating new models as they emerge.
