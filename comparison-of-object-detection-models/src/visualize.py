@@ -172,9 +172,12 @@ class ResultsVisualizer:
                 elif 'yolov11' in model_name.lower():
                     color = '#9b59b6'
                     marker = '^'
-                elif 'rtdetr' in model_name.lower():
+                elif 'rtdetr' in model_name.lower() and 'rf' not in model_name.lower():
                     color = '#e74c3c'
                     marker = 'D'
+                elif 'rfdetr' in model_name.lower():
+                    color = '#f39c12'
+                    marker = '*'
                 else:
                     color = '#95a5a6'
                     marker = 'v'

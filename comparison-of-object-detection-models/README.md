@@ -10,6 +10,7 @@ This project compares state-of-the-art object detection models optimized for low
 - **YOLOv10** (THU-MIG) - NMS-free architecture for reduced latency variance
 - **YOLOv11** (Ultralytics) - Latest YOLO iteration
 - **RT-DETR** (Baidu) - Transformer-based real-time detector
+- **RF-DETR** (Roboflow) - SOTA real-time detection transformer
 
 ### Key Features
 
@@ -35,12 +36,18 @@ Based on 2025 research and benchmarks:
 
 ### Performance Highlights
 
-| Model | Architecture | Key Advantage |
-|-------|-------------|---------------|
-| YOLOv8 | CNN-based | Proven stability, excellent documentation |
-| YOLOv10 | NMS-free YOLO | Lowest latency variance, 2.8× fewer params |
-| YOLOv11 | Enhanced CNN | Latest optimizations, incremental improvements |
-| RT-DETR | Transformer | Superior in complex scenes, global context |
+| Model | Architecture | Key Advantage | COCO mAP |
+|-------|-------------|---------------|----------|
+| YOLOv8 | CNN-based | Proven stability, excellent documentation | 53.9% |
+| YOLOv10 | NMS-free YOLO | Lowest latency variance, 2.8× fewer params | 54.4% |
+| YOLOv11 | Enhanced CNN | Latest optimizations, incremental improvements | ~40% (nano) |
+| RT-DETR | Transformer | Superior in complex scenes, global context | 53.1% |
+| **RF-DETR** | **Transformer** | **SOTA accuracy, optimized inference** | **54.7%** (M) |
+
+**RF-DETR Standout Performance:**
+- RF-DETR-M: 73.6% AP₅₀, 54.7% AP₅₀:₉₅ on COCO
+- RF-DETR-N: 67.6% AP₅₀, 48.4% AP₅₀:₉₅ with only 2.32ms latency
+- Up to 2× inference speedup with optimization
 
 ## 🚀 Quick Start
 
@@ -73,7 +80,10 @@ python compare_models.py
 python compare_models.py --quick
 
 # Compare specific models
-python compare_models.py --models yolov8n yolov10n yolov11n
+python compare_models.py --models yolov8n yolov10n yolov11n rfdetr-n
+
+# Compare RF-DETR variants
+python compare_models.py --models rfdetr-n rfdetr-s rfdetr-m
 
 # CPU-only mode
 python compare_models.py --no-gpu
@@ -269,6 +279,8 @@ The comparison generates professional publication-quality plots:
 - **YOLOv10**: Best for consistent low latency
 - **YOLOv11**: Best overall balance
 - **RT-DETR**: Best for complex scenes requiring global context
+- **RF-DETR-N**: Best for ultra-low latency with strong accuracy (2.32ms)
+- **RF-DETR-M**: Best for highest accuracy (54.7% mAP) with real-time speed
 
 ## 🛠️ Fine-tuning Models
 
@@ -292,6 +304,8 @@ model.train(
 ## 📚 References & Sources
 
 - [Best Object Detection Models 2025 - Roboflow](https://blog.roboflow.com/best-object-detection-models/)
+- [RF-DETR: SOTA Real-Time Object Detection Model - Roboflow](https://blog.roboflow.com/rf-detr/)
+- [RF-DETR GitHub Repository](https://github.com/roboflow/rf-detr)
 - [Ultralytics Model Comparisons](https://docs.ultralytics.com/compare/)
 - [YOLOv8 vs YOLOv10 Comparison](https://docs.ultralytics.com/compare/yolov8-vs-yolov10/)
 - [RTDETRv2 vs YOLOv10 Technical Comparison](https://docs.ultralytics.com/compare/rtdetr-vs-yolov10/)
