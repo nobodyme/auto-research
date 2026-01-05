@@ -160,7 +160,11 @@ for dirname, _ in subdirs_with_dates:
 
 ### [exploring-cookies](https://github.com/nobodyme/auto-research/tree/main/exploring-cookies) (2026-01-05)
 
-*No description available.*
+Modern HTTP cookies are an HTTP state mechanism (via `Set-Cookie`/`Cookie`) whose real power comes from scoping and security attributes—`Domain`, `Path`, `Expires/Max-Age`, plus `Secure`, `HttpOnly`, and `SameSite`—and from stricter naming rules like `__Host-` and `__Secure-` that reduce common attacks. Beyond session management and personalization, cookies historically enabled cross-site tracking through third-party embeds and tactics like cookie syncing, link decoration, CNAME cloaking, and bounce flows, increasingly supplemented by fingerprinting when cookies are constrained. Today’s practical reality is a patchwork: strong privacy regimes (GDPR/CCPA/CPRA and state laws) demand consent and transparency, while browsers have curtailed third-party tracking via blocking and partitioning, pushing developers toward first-party data, server-side measurement, and partitioned approaches like CHIPS. For developers, the takeaway is to keep cookies small and short-lived, treat them as untrusted input, and apply defense-in-depth against CSRF/XSS/session hijacking with `SameSite`, CSRF tokens, and hardened session cookies. Key references: [RFC 6265](https://datatracker.ietf.org/doc/html/rfc6265), [CHIPS (Partitioned cookies)](https://developer.chrome.com/docs/privacy-sandbox/chips/).
+
+* **Best-practice session cookie:** `__Host-` + `Secure` + `HttpOnly` + `SameSite=Strict|Lax` + `Path=/`, short `Max-Age`, server-side sessions, rotate/regenerate on login.
+* **Tracking trendline:** third-party cookies are increasingly blocked/partitioned; plan around first-party identity, consented measurement, and server-side integrations.
+* **Security reminder:** `Path` is not a security boundary; protect against cookie tossing/session fixation by avoiding broad `Domain` and using `__Host-` where possible.
 
 <!--[[[end]]]-->
 
