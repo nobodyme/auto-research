@@ -1,6 +1,6 @@
 # Research projects carried out by AI tools
 
-Each directory in this repo is a separate research project carried out by an LLM tool - usually [Claude Code](https://www.claude.com/product/claude-code).
+Each directory in this repo is a separate research project carried out by an LLM tool - usually [Claude Code](https://www.claude.com/product/claude-code). *Inspired by the blog from [Simon Willison](https://simonwillison.net/2025/Nov/6/async-code-research/)*
 
 <!--[[[cog
 import os
