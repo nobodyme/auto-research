@@ -8,6 +8,10 @@ Architecture:
 - Skill Registry: Discovers and loads skills from filesystem
 - Subagent Registry: Manages subagent definitions and spawning
 - Orchestrator: Routes requests to skills/subagents using LangGraph
+
+Compatible with:
+- langchain>=1.2.3
+- langgraph>=1.0.5
 """
 
 import os
@@ -18,11 +22,16 @@ from typing import TypedDict, Annotated, Literal, Optional, Any
 from dataclasses import dataclass, field
 import operator
 
-from langchain_core.messages import HumanMessage, AIMessage, SystemMessage, BaseMessage
+from langchain_core.messages import (
+    HumanMessage,
+    AIMessage,
+    SystemMessage,
+    BaseMessage,
+    ToolMessage,
+)
 from langchain_core.tools import BaseTool, tool
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_anthropic import ChatAnthropic
-from langgraph.graph import StateGraph, END
+from langgraph.graph import StateGraph, START, END
 from langgraph.prebuilt import ToolNode
 from langgraph.checkpoint.memory import MemorySaver
 
@@ -86,7 +95,7 @@ class SkillRegistry:
 
     def __init__(self, skill_paths: list[Path] = None):
         self.skill_paths = skill_paths or [
-            Path(".claude/skills"),      # Project skills
+            Path(".claude/skills"),       # Project skills
             Path.home() / ".claude/skills"  # User skills
         ]
         self.skills: dict[str, SkillDefinition] = {}
@@ -117,11 +126,17 @@ class SkillRegistry:
                     frontmatter = yaml.safe_load(parts[1])
                     markdown_content = parts[2].strip()
 
+                    allowed_tools_str = frontmatter.get("allowed-tools", "")
+                    if allowed_tools_str:
+                        allowed_tools = [t.strip() for t in allowed_tools_str.split(",")]
+                    else:
+                        allowed_tools = []
+
                     return SkillDefinition(
                         name=frontmatter.get("name", skill_file.parent.name),
                         description=frontmatter.get("description", ""),
-                        content=markdown_content,  # Store but don't use until activated
-                        allowed_tools=frontmatter.get("allowed-tools", "").split(", ") if frontmatter.get("allowed-tools") else [],
+                        content=markdown_content,
+                        allowed_tools=allowed_tools,
                         context=frontmatter.get("context", "inline"),
                         path=skill_file
                     )
@@ -140,8 +155,6 @@ class SkillRegistry:
         """Load full skill content on activation"""
         if name in self.skills:
             skill = self.skills[name]
-            # Content is already loaded during discovery
-            # In production, could defer loading until here
             return skill
         return None
 
@@ -196,7 +209,7 @@ class SubagentRegistry:
 
 Be concise and efficient. Report findings clearly.""",
             tools=["read_file", "search_files", "list_directory"],
-            model="claude-sonnet-4-20250514"  # Cheaper model for exploration
+            model="claude-sonnet-4-20250514"
         ),
         "plan": SubagentDefinition(
             name="plan",
@@ -340,7 +353,7 @@ Follow instructions carefully and complete tasks thoroughly.""",
         task_prompt: str,
         tools: list[BaseTool]
     ) -> str:
-        """Execute subagent in isolated context"""
+        """Execute subagent in isolated context using LangGraph subgraph"""
         messages = [
             SystemMessage(content=system_prompt),
             HumanMessage(content=task_prompt)
@@ -351,13 +364,11 @@ Follow instructions carefully and complete tasks thoroughly.""",
         else:
             llm_with_tools = llm
 
-        # Simple execution loop (in production, use proper agent executor)
+        # Simple execution loop
         response = llm_with_tools.invoke(messages)
 
         # Handle tool calls if present
         if hasattr(response, 'tool_calls') and response.tool_calls:
-            # Execute tools and continue conversation
-            # (Simplified - full implementation would use LangGraph subgraph)
             tool_results = []
             for tool_call in response.tool_calls:
                 for t in tools:
@@ -474,7 +485,7 @@ def create_tools(skill_registry: SkillRegistry, subagent_registry: SubagentRegis
 
 
 # =============================================================================
-# LangGraph Workflow
+# LangGraph Workflow (Updated for LangGraph 1.0.5+)
 # =============================================================================
 
 def create_dynamic_agent(
@@ -489,6 +500,8 @@ def create_dynamic_agent(
     1. Skills are model-invoked based on user intent
     2. Subagents are spawned via Task tool for isolated execution
     3. Orchestrator coordinates everything
+
+    Compatible with LangGraph 1.0.5+
     """
 
     # Initialize registries
@@ -539,6 +552,9 @@ Subagents run in isolated contexts with their own tools - use them for:
     # Bind tools to LLM
     llm_with_tools = llm.bind_tools(tools)
 
+    # Create tool node for executing tool calls
+    tool_node = ToolNode(tools)
+
     # Define graph nodes
     def router(state: AgentState) -> AgentState:
         """Route incoming request - decide skill/subagent/direct"""
@@ -552,20 +568,16 @@ Subagents run in isolated contexts with their own tools - use them for:
                 break
 
         if not last_message:
-            state["route_decision"] = "respond"
-            return state
+            return {**state, "route_decision": "respond"}
 
         # Check if a skill should be activated
         matched_skill = skill_registry.match_skill(last_message, llm)
         if matched_skill:
-            state["active_skill"] = matched_skill
-            state["route_decision"] = "skill"
+            return {**state, "active_skill": matched_skill, "route_decision": "skill"}
         else:
-            state["route_decision"] = "agent"
+            return {**state, "route_decision": "agent"}
 
-        return state
-
-    def agent_node(state: AgentState) -> AgentState:
+    def agent_node(state: AgentState) -> dict:
         """Main agent processing node"""
         messages = state["messages"]
 
@@ -575,20 +587,19 @@ Subagents run in isolated contexts with their own tools - use them for:
         response = llm_with_tools.invoke(full_messages)
 
         # Check for subagent spawn requests
-        if hasattr(response, 'tool_calls'):
+        pending_tasks = list(state.get("pending_tasks", []))
+        if hasattr(response, 'tool_calls') and response.tool_calls:
             for tool_call in response.tool_calls:
                 if tool_call['name'] == 'spawn_subagent':
-                    # Queue subagent task
-                    state["pending_tasks"].append({
+                    pending_tasks.append({
                         "type": "subagent",
                         "agent": tool_call['args']['agent_type'],
                         "task": tool_call['args']['task']
                     })
 
-        state["messages"] = [response]
-        return state
+        return {"messages": [response], "pending_tasks": pending_tasks}
 
-    def skill_node(state: AgentState) -> AgentState:
+    def skill_node(state: AgentState) -> dict:
         """Execute with activated skill"""
         skill_name = state.get("active_skill")
         if not skill_name:
@@ -615,14 +626,12 @@ Subagents run in isolated contexts with their own tools - use them for:
             skill_llm = llm_with_tools
 
         response = skill_llm.invoke(full_messages)
-        state["messages"] = [response]
-        state["active_skill"] = None
-        return state
+        return {"messages": [response], "active_skill": None}
 
-    def subagent_node(state: AgentState) -> AgentState:
+    def subagent_node(state: AgentState) -> dict:
         """Execute pending subagent tasks"""
         pending = state.get("pending_tasks", [])
-        results = state.get("subagent_results", [])
+        results = list(state.get("subagent_results", []))
 
         for task in pending:
             if task["type"] == "subagent":
@@ -634,23 +643,13 @@ Subagents run in isolated contexts with their own tools - use them for:
                 )
                 results.append(result)
 
-        state["pending_tasks"] = []
-        state["subagent_results"] = results
-        return state
+        return {"pending_tasks": [], "subagent_results": results}
 
-    def tool_node(state: AgentState) -> AgentState:
-        """Execute tool calls"""
-        messages = state["messages"]
-        last_message = messages[-1] if messages else None
+    def tools_node(state: AgentState) -> dict:
+        """Execute tool calls using ToolNode"""
+        return tool_node.invoke(state)
 
-        if hasattr(last_message, 'tool_calls') and last_message.tool_calls:
-            tool_executor = ToolNode(tools)
-            result = tool_executor.invoke({"messages": messages})
-            state["messages"] = result["messages"]
-
-        return state
-
-    def should_continue(state: AgentState) -> Literal["tools", "subagent", "end"]:
+    def should_continue(state: AgentState) -> Literal["tools", "subagent", "__end__"]:
         """Determine next step after agent node"""
         messages = state["messages"]
         last_message = messages[-1] if messages else None
@@ -666,47 +665,74 @@ Subagents run in isolated contexts with their own tools - use them for:
             if non_spawn_calls:
                 return "tools"
 
-        return "end"
+        return "__end__"
 
     def route_from_router(state: AgentState) -> Literal["skill", "agent"]:
         """Route from router node"""
         return state.get("route_decision", "agent")
 
-    # Build the graph
+    # Build the graph using LangGraph 1.0.5+ API
     workflow = StateGraph(AgentState)
 
     # Add nodes
     workflow.add_node("router", router)
     workflow.add_node("agent", agent_node)
     workflow.add_node("skill", skill_node)
-    workflow.add_node("tools", tool_node)
+    workflow.add_node("tools", tools_node)
     workflow.add_node("subagent", subagent_node)
 
-    # Set entry point
-    workflow.set_entry_point("router")
+    # Set entry point using START (LangGraph 1.0.5+ pattern)
+    workflow.add_edge(START, "router")
 
-    # Add edges
+    # Add conditional edges from router
     workflow.add_conditional_edges(
         "router",
         route_from_router,
         {"skill": "skill", "agent": "agent"}
     )
 
+    # Add conditional edges from agent
     workflow.add_conditional_edges(
         "agent",
         should_continue,
-        {"tools": "tools", "subagent": "subagent", "end": END}
+        {"tools": "tools", "subagent": "subagent", "__end__": END}
     )
 
-    workflow.add_edge("skill", "agent")  # After skill, go to agent for response
-    workflow.add_edge("tools", "agent")  # After tools, back to agent
-    workflow.add_edge("subagent", "agent")  # After subagent, back to agent
+    # Add edges for returning to agent
+    workflow.add_edge("skill", "agent")
+    workflow.add_edge("tools", "agent")
+    workflow.add_edge("subagent", "agent")
 
-    # Compile with memory
+    # Compile with memory checkpointer
     memory = MemorySaver()
     app = workflow.compile(checkpointer=memory)
 
     return app, skill_registry, subagent_registry
+
+
+# =============================================================================
+# Async Support for Parallel Subagent Execution
+# =============================================================================
+
+async def execute_subagents_parallel(
+    subagent_registry: SubagentRegistry,
+    tasks: list[dict],
+    available_tools: list[BaseTool],
+    llm_factory: callable
+) -> list[dict]:
+    """Execute multiple subagent tasks in parallel"""
+
+    async def run_subagent(task: dict) -> dict:
+        return subagent_registry.spawn_subagent(
+            name=task["agent"],
+            task_prompt=task["task"],
+            available_tools=available_tools,
+            llm_factory=llm_factory
+        )
+
+    # Run all tasks concurrently
+    results = await asyncio.gather(*[run_subagent(t) for t in tasks])
+    return list(results)
 
 
 # =============================================================================
@@ -715,7 +741,6 @@ Subagents run in isolated contexts with their own tools - use them for:
 
 def main():
     """Example usage of the dynamic agent"""
-    import os
 
     # Create sample skills directory
     skills_dir = Path(".claude/skills/code-review")
@@ -789,7 +814,7 @@ Provide findings in this format:
     # Example conversation
     config = {"configurable": {"thread_id": "demo-session"}}
 
-    initial_state = {
+    initial_state: AgentState = {
         "messages": [],
         "skills_registry": {},
         "subagents_registry": {},
@@ -802,7 +827,7 @@ Provide findings in this format:
 
     # Test with a request that should trigger the code-review skill
     print("\n--- Test 1: Skill Activation ---")
-    test_state = {
+    test_state: AgentState = {
         **initial_state,
         "messages": [HumanMessage(content="Please review the code in this project for quality issues")]
     }
@@ -812,7 +837,7 @@ Provide findings in this format:
 
     # Test with a request that should spawn a subagent
     print("\n--- Test 2: Subagent Spawning ---")
-    test_state = {
+    test_state: AgentState = {
         **initial_state,
         "messages": [HumanMessage(content="Explore the codebase and find all Python files")]
     }

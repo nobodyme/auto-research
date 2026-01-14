@@ -2,6 +2,13 @@
 
 Research and implementation of Claude Code's dynamic agent architecture using LangChain/LangGraph.
 
+## Requirements
+
+- Python 3.11+
+- `langchain>=1.2.3`
+- `langgraph>=1.0.5`
+- `langchain-anthropic>=0.3.0`
+
 ## Overview
 
 This research explores how Claude Code integrates **dynamic skills** and **subagents** to create extensible, powerful AI assistants. The key insight is that Claude Code uses a two-tier extension system:
@@ -62,6 +69,7 @@ my-skill/
 |------|-------------|
 | `dynamic_agent.py` | Main implementation with LangGraph workflow |
 | `parallel_subagents.py` | Parallel subagent execution patterns |
+| `test_dynamic_agent.py` | Comprehensive test suite (31 tests) |
 | `docs.md` | Comprehensive documentation |
 | `notes.md` | Research notes and process |
 | `examples/` | Sample skills and agent definitions |
@@ -98,6 +106,16 @@ my-skill/
 ```bash
 pip install -r requirements.txt
 export ANTHROPIC_API_KEY=your_key_here
+```
+
+### Running Tests
+
+```bash
+# Run all tests
+pytest test_dynamic_agent.py -v
+
+# Run specific test class
+pytest test_dynamic_agent.py::TestSkillRegistry -v
 ```
 
 ### Basic Usage
