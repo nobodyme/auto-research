@@ -3,11 +3,15 @@ Parallel Subagent Execution
 
 This module demonstrates how to spawn and execute multiple subagents
 concurrently, matching Claude Code's parallel Task tool behavior.
+
+Compatible with:
+- langchain>=1.2.3
+- langgraph>=1.0.5
 """
 
 import asyncio
 from typing import Any
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from concurrent.futures import ThreadPoolExecutor
 
 from langchain_anthropic import ChatAnthropic
@@ -169,7 +173,7 @@ Provide architectural recommendations.""",
         Returns:
             List of SubagentResult objects
         """
-        loop = asyncio.get_event_loop()
+        loop = asyncio.get_running_loop()
 
         # Run all tasks concurrently using thread pool
         futures = [
