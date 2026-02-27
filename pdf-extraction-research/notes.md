@@ -440,7 +440,48 @@ docling-eval evaluate --dataset dp-bench
 | mAP | Layout detection accuracy | Yes | DocLayNet |
 | F1 | Precision/recall harmonic mean | Yes | DocLayNet study |
 
+## Our Experimental Findings (2026-02-27)
+
+### Test Setup
+- **Libraries tested**: PyMuPDF 1.27.1, pdfplumber 0.11.9, pypdf 6.7.4, pdfminer.six 20251230, camelot-py 1.0.9
+- **PDFs tested**: 9 total (5 custom with ground truth + 4 real arXiv papers)
+- **TDD**: 62 tests written, 61 pass, 1 real bug found
+
+### Text Extraction Results (9 PDFs)
+| Library | Overall Score | Keyword Recall | Number Preservation | Avg Speed |
+|---------|--------------|----------------|--------------------|-----------|
+| PyMuPDF | **0.967** | 95.0% | 97.2% | **0.11s** |
+| pdfplumber | 0.967 | 95.0% | 97.2% | 2.48s |
+| pypdf | 0.967 | 95.0% | 97.2% | 0.64s |
+| pdfminer.six | 0.967 | 95.0% | 97.2% | 1.71s |
+
+**Key insight**: All 4 libraries achieve near-identical accuracy. PyMuPDF is 23x faster than pdfplumber for text extraction.
+
+### Table Extraction Results (9 PDFs)
+| Library | Overall Score | Detection Rate | Cell Accuracy | Avg Speed | Tables Found |
+|---------|--------------|----------------|--------------|-----------|--------------|
+| PyMuPDF | **0.919** | 100% | 83.9% | **1.48s** | 35 |
+| pdfplumber | 0.919 | 100% | 83.9% | 2.69s | 61 |
+| camelot-stream | 0.892 | 94.4% | 83.9% | 2.90s | 100 |
+| camelot-lattice | 0.882 | 94.4% | 82.0% | 7.58s | 28 |
+
+**Key insight**: pdfplumber finds more tables (61 vs 35) but many are over-split fragments. camelot-lattice is 5x slower than PyMuPDF.
+
+### Critical Bug Found (TDD-driven discovery)
+**camelot-lattice** fails `test_simple_table_header_content`: extracts data rows but skips header row when header has background color styling. This is a real production bug.
+
+### Speed Summary
+- PyMuPDF is the clear winner for speed: **23x faster** than pdfplumber for text, **5x faster** than camelot-lattice for tables
+- For LLM preprocessing pipelines, PyMuPDF is the recommended choice
+- pdfplumber's advantage is its API giving fine-grained word/bbox access
+
 ## Progress Log
 - 2026-02-27: Started investigation, setting up environment
 - 2026-02-27: Completed benchmark research — found all 5 requested + 4 additional benchmarks
 - 2026-02-27: Found 6+ comparison papers/blogs
+- 2026-02-27: Installed pymupdf, pdfplumber, pypdf, pdfminer.six, camelot-py
+- 2026-02-27: Created 5 custom test PDFs with ground truth JSON
+- 2026-02-27: Wrote 62 TDD tests (61 pass, 1 real bug found in camelot-lattice)
+- 2026-02-27: Downloaded 4 real-world arXiv PDFs for benchmarking
+- 2026-02-27: Ran comprehensive benchmark (9 PDFs × 4 text + 4 table extractors)
+- 2026-02-27: Generated 7 visualization charts
