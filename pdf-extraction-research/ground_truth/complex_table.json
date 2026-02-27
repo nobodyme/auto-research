@@ -1,0 +1,41 @@
+{
+  "filename": "complex_table.pdf",
+  "description": "Complex table with merged cells + second comparison table",
+  "tables": [
+    {
+      "rows": 7,
+      "cols": 6,
+      "merged_cells": true,
+      "header": [
+        "Department",
+        "H1 Performance",
+        "H2 Performance",
+        "Annual"
+      ],
+      "description": "Performance scorecard with merged header cells"
+    },
+    {
+      "rows": 7,
+      "cols": 6,
+      "header": [
+        "Metric",
+        "2022",
+        "2023",
+        "2024",
+        "Delta (23-24)",
+        "Trend"
+      ],
+      "key_values": {
+        "Revenue 2024": "$187.2M",
+        "NPS 2024": "67",
+        "Churn 2024": "4.1%"
+      }
+    }
+  ],
+  "text_sections": [
+    "Annual Performance Review Matrix",
+    "Department Performance Scorecard",
+    "Year-over-Year Comparison"
+  ],
+  "images": 0
+}

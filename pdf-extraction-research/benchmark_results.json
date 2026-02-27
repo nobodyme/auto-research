@@ -1,0 +1,902 @@
+{
+  "text_extraction": {
+    "PyMuPDF": [
+      {
+        "pdf": "complex_table",
+        "category": "custom_controlled",
+        "elapsed": 0.13689160346984863,
+        "text_length": 587,
+        "keyword_recall": 1.0,
+        "number_preservation": 1.0,
+        "printable_ratio": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "mixed_content",
+        "category": "custom_controlled",
+        "elapsed": 0.006128072738647461,
+        "text_length": 2224,
+        "keyword_recall": 1.0,
+        "number_preservation": 1.0,
+        "printable_ratio": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "multicolumn",
+        "category": "custom_controlled",
+        "elapsed": 0.004144191741943359,
+        "text_length": 1209,
+        "keyword_recall": 1.0,
+        "number_preservation": 1.0,
+        "printable_ratio": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "simple_table",
+        "category": "custom_controlled",
+        "elapsed": 0.004510641098022461,
+        "text_length": 638,
+        "keyword_recall": 0.75,
+        "number_preservation": 1.0,
+        "printable_ratio": 1.0,
+        "overall_score": 0.875,
+        "error": null
+      },
+      {
+        "pdf": "text_heavy",
+        "category": "custom_controlled",
+        "elapsed": 0.004287242889404297,
+        "text_length": 2861,
+        "keyword_recall": 1.0,
+        "number_preservation": 1.0,
+        "printable_ratio": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "attention_paper",
+        "category": "academic_paper",
+        "elapsed": 0.3227419853210449,
+        "text_length": 39498,
+        "keyword_recall": 1.0,
+        "number_preservation": 0.75,
+        "printable_ratio": 1.0,
+        "overall_score": 0.925,
+        "error": null
+      },
+      {
+        "pdf": "pdf_parsing_study",
+        "category": "academic_paper",
+        "elapsed": 0.10639286041259766,
+        "text_length": 55115,
+        "keyword_recall": 1.0,
+        "number_preservation": 1.0,
+        "printable_ratio": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "survey_llm",
+        "category": "academic_survey",
+        "elapsed": 0.131500244140625,
+        "text_length": 50217,
+        "keyword_recall": 1.0,
+        "number_preservation": 1.0,
+        "printable_ratio": 0.9999601728498317,
+        "overall_score": 0.9999920345699664,
+        "error": null
+      },
+      {
+        "pdf": "table_benchmark",
+        "category": "academic_paper",
+        "elapsed": 0.23786091804504395,
+        "text_length": 67604,
+        "keyword_recall": 0.8,
+        "number_preservation": 1.0,
+        "printable_ratio": 1.0,
+        "overall_score": 0.8999999999999999,
+        "error": null
+      }
+    ],
+    "pdfplumber": [
+      {
+        "pdf": "complex_table",
+        "category": "custom_controlled",
+        "elapsed": 0.21409034729003906,
+        "text_length": 588,
+        "keyword_recall": 1.0,
+        "number_preservation": 1.0,
+        "printable_ratio": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "mixed_content",
+        "category": "custom_controlled",
+        "elapsed": 0.07084393501281738,
+        "text_length": 2223,
+        "keyword_recall": 1.0,
+        "number_preservation": 1.0,
+        "printable_ratio": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "multicolumn",
+        "category": "custom_controlled",
+        "elapsed": 0.03879666328430176,
+        "text_length": 1208,
+        "keyword_recall": 1.0,
+        "number_preservation": 1.0,
+        "printable_ratio": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "simple_table",
+        "category": "custom_controlled",
+        "elapsed": 0.022386789321899414,
+        "text_length": 637,
+        "keyword_recall": 0.75,
+        "number_preservation": 1.0,
+        "printable_ratio": 1.0,
+        "overall_score": 0.875,
+        "error": null
+      },
+      {
+        "pdf": "text_heavy",
+        "category": "custom_controlled",
+        "elapsed": 0.07078719139099121,
+        "text_length": 2860,
+        "keyword_recall": 1.0,
+        "number_preservation": 1.0,
+        "printable_ratio": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "attention_paper",
+        "category": "academic_paper",
+        "elapsed": 3.5375964641571045,
+        "text_length": 35525,
+        "keyword_recall": 1.0,
+        "number_preservation": 0.75,
+        "printable_ratio": 1.0,
+        "overall_score": 0.925,
+        "error": null
+      },
+      {
+        "pdf": "pdf_parsing_study",
+        "category": "academic_paper",
+        "elapsed": 1.996711015701294,
+        "text_length": 53710,
+        "keyword_recall": 1.0,
+        "number_preservation": 1.0,
+        "printable_ratio": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "survey_llm",
+        "category": "academic_survey",
+        "elapsed": 1.6913354396820068,
+        "text_length": 45359,
+        "keyword_recall": 1.0,
+        "number_preservation": 1.0,
+        "printable_ratio": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "table_benchmark",
+        "category": "academic_paper",
+        "elapsed": 14.686155557632446,
+        "text_length": 61307,
+        "keyword_recall": 0.8,
+        "number_preservation": 1.0,
+        "printable_ratio": 1.0,
+        "overall_score": 0.8999999999999999,
+        "error": null
+      }
+    ],
+    "pypdf": [
+      {
+        "pdf": "complex_table",
+        "category": "custom_controlled",
+        "elapsed": 0.10823369026184082,
+        "text_length": 588,
+        "keyword_recall": 1.0,
+        "number_preservation": 1.0,
+        "printable_ratio": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "mixed_content",
+        "category": "custom_controlled",
+        "elapsed": 0.006671428680419922,
+        "text_length": 2227,
+        "keyword_recall": 1.0,
+        "number_preservation": 1.0,
+        "printable_ratio": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "multicolumn",
+        "category": "custom_controlled",
+        "elapsed": 0.0038909912109375,
+        "text_length": 1211,
+        "keyword_recall": 1.0,
+        "number_preservation": 1.0,
+        "printable_ratio": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "simple_table",
+        "category": "custom_controlled",
+        "elapsed": 0.002876758575439453,
+        "text_length": 641,
+        "keyword_recall": 0.75,
+        "number_preservation": 1.0,
+        "printable_ratio": 1.0,
+        "overall_score": 0.875,
+        "error": null
+      },
+      {
+        "pdf": "text_heavy",
+        "category": "custom_controlled",
+        "elapsed": 0.0034003257751464844,
+        "text_length": 2862,
+        "keyword_recall": 1.0,
+        "number_preservation": 1.0,
+        "printable_ratio": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "attention_paper",
+        "category": "academic_paper",
+        "elapsed": 0.9078540802001953,
+        "text_length": 39487,
+        "keyword_recall": 1.0,
+        "number_preservation": 0.75,
+        "printable_ratio": 1.0,
+        "overall_score": 0.925,
+        "error": null
+      },
+      {
+        "pdf": "pdf_parsing_study",
+        "category": "academic_paper",
+        "elapsed": 0.5177319049835205,
+        "text_length": 54616,
+        "keyword_recall": 1.0,
+        "number_preservation": 1.0,
+        "printable_ratio": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "survey_llm",
+        "category": "academic_survey",
+        "elapsed": 0.2829892635345459,
+        "text_length": 50253,
+        "keyword_recall": 1.0,
+        "number_preservation": 1.0,
+        "printable_ratio": 0.9999403020715181,
+        "overall_score": 0.9999880604143037,
+        "error": null
+      },
+      {
+        "pdf": "table_benchmark",
+        "category": "academic_paper",
+        "elapsed": 3.916076898574829,
+        "text_length": 67163,
+        "keyword_recall": 0.8,
+        "number_preservation": 1.0,
+        "printable_ratio": 1.0,
+        "overall_score": 0.8999999999999999,
+        "error": null
+      }
+    ],
+    "pdfminer.six": [
+      {
+        "pdf": "complex_table",
+        "category": "custom_controlled",
+        "elapsed": 0.0485992431640625,
+        "text_length": 671,
+        "keyword_recall": 1.0,
+        "number_preservation": 1.0,
+        "printable_ratio": 0.9985096870342772,
+        "overall_score": 0.9997019374068555,
+        "error": null
+      },
+      {
+        "pdf": "mixed_content",
+        "category": "custom_controlled",
+        "elapsed": 0.04647469520568848,
+        "text_length": 2301,
+        "keyword_recall": 1.0,
+        "number_preservation": 1.0,
+        "printable_ratio": 0.9991308126901347,
+        "overall_score": 0.999826162538027,
+        "error": null
+      },
+      {
+        "pdf": "multicolumn",
+        "category": "custom_controlled",
+        "elapsed": 0.020671606063842773,
+        "text_length": 1250,
+        "keyword_recall": 1.0,
+        "number_preservation": 1.0,
+        "printable_ratio": 0.9992,
+        "overall_score": 0.9998400000000001,
+        "error": null
+      },
+      {
+        "pdf": "simple_table",
+        "category": "custom_controlled",
+        "elapsed": 0.014498472213745117,
+        "text_length": 672,
+        "keyword_recall": 0.75,
+        "number_preservation": 1.0,
+        "printable_ratio": 0.9985119047619048,
+        "overall_score": 0.8747023809523811,
+        "error": null
+      },
+      {
+        "pdf": "text_heavy",
+        "category": "custom_controlled",
+        "elapsed": 0.029244422912597656,
+        "text_length": 2873,
+        "keyword_recall": 1.0,
+        "number_preservation": 1.0,
+        "printable_ratio": 0.9996519317786287,
+        "overall_score": 0.9999303863557258,
+        "error": null
+      },
+      {
+        "pdf": "attention_paper",
+        "category": "academic_paper",
+        "elapsed": 2.753493070602417,
+        "text_length": 39675,
+        "keyword_recall": 1.0,
+        "number_preservation": 0.75,
+        "printable_ratio": 0.9996219281663516,
+        "overall_score": 0.9249243856332703,
+        "error": null
+      },
+      {
+        "pdf": "pdf_parsing_study",
+        "category": "academic_paper",
+        "elapsed": 1.0815882682800293,
+        "text_length": 55657,
+        "keyword_recall": 1.0,
+        "number_preservation": 1.0,
+        "printable_ratio": 0.999658623353756,
+        "overall_score": 0.9999317246707513,
+        "error": null
+      },
+      {
+        "pdf": "survey_llm",
+        "category": "academic_survey",
+        "elapsed": 0.8465521335601807,
+        "text_length": 50429,
+        "keyword_recall": 1.0,
+        "number_preservation": 1.0,
+        "printable_ratio": 0.9997223819627595,
+        "overall_score": 0.999944476392552,
+        "error": null
+      },
+      {
+        "pdf": "table_benchmark",
+        "category": "academic_paper",
+        "elapsed": 10.532103300094604,
+        "text_length": 67465,
+        "keyword_recall": 0.8,
+        "number_preservation": 1.0,
+        "printable_ratio": 0.9997035499888831,
+        "overall_score": 0.8999407099977765,
+        "error": null
+      }
+    ]
+  },
+  "table_extraction": {
+    "PyMuPDF": [
+      {
+        "pdf": "complex_table",
+        "category": "custom_controlled",
+        "elapsed": 0.04990792274475098,
+        "tables_found": 2,
+        "tables_expected": 2,
+        "detection_rate": 1.0,
+        "cell_accuracy": 0.9230769230769231,
+        "overall_score": 0.9615384615384616,
+        "error": null
+      },
+      {
+        "pdf": "mixed_content",
+        "category": "custom_controlled",
+        "elapsed": 0.12018632888793945,
+        "tables_found": 2,
+        "tables_expected": 2,
+        "detection_rate": 1.0,
+        "cell_accuracy": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "multicolumn",
+        "category": "custom_controlled",
+        "elapsed": 0.052696943283081055,
+        "tables_found": 1,
+        "tables_expected": 1,
+        "detection_rate": 1.0,
+        "cell_accuracy": 0.625,
+        "overall_score": 0.8125,
+        "error": null
+      },
+      {
+        "pdf": "simple_table",
+        "category": "custom_controlled",
+        "elapsed": 0.03438758850097656,
+        "tables_found": 1,
+        "tables_expected": 1,
+        "detection_rate": 1.0,
+        "cell_accuracy": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "text_heavy",
+        "category": "custom_controlled",
+        "elapsed": 0.07095026969909668,
+        "tables_found": 0,
+        "tables_expected": 0,
+        "detection_rate": 1.0,
+        "cell_accuracy": 0.0,
+        "overall_score": 0.5,
+        "error": null
+      },
+      {
+        "pdf": "attention_paper",
+        "category": "academic_paper",
+        "elapsed": 2.4114134311676025,
+        "tables_found": 6,
+        "tables_expected": 2,
+        "detection_rate": 1.0,
+        "cell_accuracy": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "pdf_parsing_study",
+        "category": "academic_paper",
+        "elapsed": 1.9927988052368164,
+        "tables_found": 5,
+        "tables_expected": 1,
+        "detection_rate": 1.0,
+        "cell_accuracy": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "survey_llm",
+        "category": "academic_survey",
+        "elapsed": 1.7889297008514404,
+        "tables_found": 2,
+        "tables_expected": 1,
+        "detection_rate": 1.0,
+        "cell_accuracy": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "table_benchmark",
+        "category": "academic_paper",
+        "elapsed": 6.81142783164978,
+        "tables_found": 16,
+        "tables_expected": 2,
+        "detection_rate": 1.0,
+        "cell_accuracy": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      }
+    ],
+    "pdfplumber": [
+      {
+        "pdf": "complex_table",
+        "category": "custom_controlled",
+        "elapsed": 0.03432798385620117,
+        "tables_found": 2,
+        "tables_expected": 2,
+        "detection_rate": 1.0,
+        "cell_accuracy": 0.9230769230769231,
+        "overall_score": 0.9615384615384616,
+        "error": null
+      },
+      {
+        "pdf": "mixed_content",
+        "category": "custom_controlled",
+        "elapsed": 0.07268238067626953,
+        "tables_found": 2,
+        "tables_expected": 2,
+        "detection_rate": 1.0,
+        "cell_accuracy": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "multicolumn",
+        "category": "custom_controlled",
+        "elapsed": 0.03690671920776367,
+        "tables_found": 1,
+        "tables_expected": 1,
+        "detection_rate": 1.0,
+        "cell_accuracy": 0.625,
+        "overall_score": 0.8125,
+        "error": null
+      },
+      {
+        "pdf": "simple_table",
+        "category": "custom_controlled",
+        "elapsed": 0.023368358612060547,
+        "tables_found": 1,
+        "tables_expected": 1,
+        "detection_rate": 1.0,
+        "cell_accuracy": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "text_heavy",
+        "category": "custom_controlled",
+        "elapsed": 0.06559634208679199,
+        "tables_found": 0,
+        "tables_expected": 0,
+        "detection_rate": 1.0,
+        "cell_accuracy": 0.0,
+        "overall_score": 0.5,
+        "error": null
+      },
+      {
+        "pdf": "attention_paper",
+        "category": "academic_paper",
+        "elapsed": 3.382871389389038,
+        "tables_found": 10,
+        "tables_expected": 2,
+        "detection_rate": 1.0,
+        "cell_accuracy": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "pdf_parsing_study",
+        "category": "academic_paper",
+        "elapsed": 1.9212884902954102,
+        "tables_found": 11,
+        "tables_expected": 1,
+        "detection_rate": 1.0,
+        "cell_accuracy": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "survey_llm",
+        "category": "academic_survey",
+        "elapsed": 1.645686149597168,
+        "tables_found": 7,
+        "tables_expected": 1,
+        "detection_rate": 1.0,
+        "cell_accuracy": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "table_benchmark",
+        "category": "academic_paper",
+        "elapsed": 17.058547496795654,
+        "tables_found": 27,
+        "tables_expected": 2,
+        "detection_rate": 1.0,
+        "cell_accuracy": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      }
+    ],
+    "camelot-lattice": [
+      {
+        "pdf": "complex_table",
+        "category": "custom_controlled",
+        "elapsed": 2.333815097808838,
+        "tables_found": 2,
+        "tables_expected": 2,
+        "detection_rate": 1.0,
+        "cell_accuracy": 0.9230769230769231,
+        "overall_score": 0.9615384615384616,
+        "error": null
+      },
+      {
+        "pdf": "mixed_content",
+        "category": "custom_controlled",
+        "elapsed": 1.0347437858581543,
+        "tables_found": 1,
+        "tables_expected": 2,
+        "detection_rate": 0.5,
+        "cell_accuracy": 1.0,
+        "overall_score": 0.75,
+        "error": null
+      },
+      {
+        "pdf": "multicolumn",
+        "category": "custom_controlled",
+        "elapsed": 0.48276448249816895,
+        "tables_found": 1,
+        "tables_expected": 1,
+        "detection_rate": 1.0,
+        "cell_accuracy": 0.625,
+        "overall_score": 0.8125,
+        "error": null
+      },
+      {
+        "pdf": "simple_table",
+        "category": "custom_controlled",
+        "elapsed": 0.4485499858856201,
+        "tables_found": 1,
+        "tables_expected": 1,
+        "detection_rate": 1.0,
+        "cell_accuracy": 0.8333333333333334,
+        "overall_score": 0.9166666666666667,
+        "error": null
+      },
+      {
+        "pdf": "text_heavy",
+        "category": "custom_controlled",
+        "elapsed": 0.5249330997467041,
+        "tables_found": 0,
+        "tables_expected": 0,
+        "detection_rate": 1.0,
+        "cell_accuracy": 0.0,
+        "overall_score": 0.5,
+        "error": null
+      },
+      {
+        "pdf": "attention_paper",
+        "category": "academic_paper",
+        "elapsed": 17.634525299072266,
+        "tables_found": 2,
+        "tables_expected": 2,
+        "detection_rate": 1.0,
+        "cell_accuracy": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "pdf_parsing_study",
+        "category": "academic_paper",
+        "elapsed": 11.889544486999512,
+        "tables_found": 9,
+        "tables_expected": 1,
+        "detection_rate": 1.0,
+        "cell_accuracy": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "survey_llm",
+        "category": "academic_survey",
+        "elapsed": 10.122180223464966,
+        "tables_found": 4,
+        "tables_expected": 1,
+        "detection_rate": 1.0,
+        "cell_accuracy": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "table_benchmark",
+        "category": "academic_paper",
+        "elapsed": 23.723464488983154,
+        "tables_found": 8,
+        "tables_expected": 2,
+        "detection_rate": 1.0,
+        "cell_accuracy": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      }
+    ],
+    "camelot-stream": [
+      {
+        "pdf": "complex_table",
+        "category": "custom_controlled",
+        "elapsed": 0.05221915245056152,
+        "tables_found": 2,
+        "tables_expected": 2,
+        "detection_rate": 1.0,
+        "cell_accuracy": 0.9230769230769231,
+        "overall_score": 0.9615384615384616,
+        "error": null
+      },
+      {
+        "pdf": "mixed_content",
+        "category": "custom_controlled",
+        "elapsed": 0.058306217193603516,
+        "tables_found": 2,
+        "tables_expected": 2,
+        "detection_rate": 1.0,
+        "cell_accuracy": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "multicolumn",
+        "category": "custom_controlled",
+        "elapsed": 0.028249263763427734,
+        "tables_found": 1,
+        "tables_expected": 1,
+        "detection_rate": 1.0,
+        "cell_accuracy": 0.625,
+        "overall_score": 0.8125,
+        "error": null
+      },
+      {
+        "pdf": "simple_table",
+        "category": "custom_controlled",
+        "elapsed": 0.02053546905517578,
+        "tables_found": 1,
+        "tables_expected": 1,
+        "detection_rate": 1.0,
+        "cell_accuracy": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "text_heavy",
+        "category": "custom_controlled",
+        "elapsed": 0.03504824638366699,
+        "tables_found": 1,
+        "tables_expected": 0,
+        "detection_rate": 0.5,
+        "cell_accuracy": 0.0,
+        "overall_score": 0.25,
+        "error": null
+      },
+      {
+        "pdf": "attention_paper",
+        "category": "academic_paper",
+        "elapsed": 8.51841115951538,
+        "tables_found": 16,
+        "tables_expected": 2,
+        "detection_rate": 1.0,
+        "cell_accuracy": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "pdf_parsing_study",
+        "category": "academic_paper",
+        "elapsed": 2.517159938812256,
+        "tables_found": 27,
+        "tables_expected": 1,
+        "detection_rate": 1.0,
+        "cell_accuracy": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "survey_llm",
+        "category": "academic_survey",
+        "elapsed": 1.5413618087768555,
+        "tables_found": 20,
+        "tables_expected": 1,
+        "detection_rate": 1.0,
+        "cell_accuracy": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      },
+      {
+        "pdf": "table_benchmark",
+        "category": "academic_paper",
+        "elapsed": 13.302438020706177,
+        "tables_found": 30,
+        "tables_expected": 2,
+        "detection_rate": 1.0,
+        "cell_accuracy": 1.0,
+        "overall_score": 1.0,
+        "error": null
+      }
+    ]
+  },
+  "benchmark_cases": [
+    "complex_table",
+    "mixed_content",
+    "multicolumn",
+    "simple_table",
+    "text_heavy",
+    "attention_paper",
+    "pdf_parsing_study",
+    "survey_llm",
+    "table_benchmark"
+  ],
+  "metadata": {},
+  "text_summary": {
+    "PyMuPDF": {
+      "avg_keyword_recall": 0.9500000000000001,
+      "avg_number_preservation": 0.9722222222222222,
+      "avg_printable_ratio": 0.9999955747610925,
+      "avg_speed": 0.10605086220635308,
+      "avg_overall": 0.9666657816188852,
+      "error_count": 0,
+      "tested": 9
+    },
+    "pdfplumber": {
+      "avg_keyword_recall": 0.9500000000000001,
+      "avg_number_preservation": 0.9722222222222222,
+      "avg_printable_ratio": 1.0,
+      "avg_speed": 2.4809670448303223,
+      "avg_overall": 0.9666666666666666,
+      "error_count": 0,
+      "tested": 9
+    },
+    "pypdf": {
+      "avg_keyword_recall": 0.9500000000000001,
+      "avg_number_preservation": 0.9722222222222222,
+      "avg_printable_ratio": 0.9999933668968354,
+      "avg_speed": 0.6388583713107638,
+      "avg_overall": 0.9666653400460338,
+      "error_count": 0,
+      "tested": 9
+    },
+    "pdfminer.six": {
+      "avg_keyword_recall": 0.9500000000000001,
+      "avg_number_preservation": 0.9722222222222222,
+      "avg_printable_ratio": 0.999301202192966,
+      "avg_speed": 1.708136134677463,
+      "avg_overall": 0.96652690710526,
+      "error_count": 0,
+      "tested": 9
+    }
+  },
+  "table_summary": {
+    "PyMuPDF": {
+      "avg_detection_rate": 1.0,
+      "avg_cell_accuracy": 0.8386752136752137,
+      "avg_speed": 1.4814109802246094,
+      "avg_overall": 0.9193376068376069,
+      "total_tables_found": 35,
+      "error_count": 0,
+      "tested": 9
+    },
+    "pdfplumber": {
+      "avg_detection_rate": 1.0,
+      "avg_cell_accuracy": 0.8386752136752137,
+      "avg_speed": 2.6934750345018177,
+      "avg_overall": 0.9193376068376069,
+      "total_tables_found": 61,
+      "error_count": 0,
+      "tested": 9
+    },
+    "camelot-lattice": {
+      "avg_detection_rate": 0.9444444444444444,
+      "avg_cell_accuracy": 0.8201566951566952,
+      "avg_speed": 7.57716899447971,
+      "avg_overall": 0.8823005698005698,
+      "total_tables_found": 28,
+      "error_count": 0,
+      "tested": 9
+    },
+    "camelot-stream": {
+      "avg_detection_rate": 0.9444444444444444,
+      "avg_cell_accuracy": 0.8386752136752137,
+      "avg_speed": 2.8970810307396784,
+      "avg_overall": 0.8915598290598291,
+      "total_tables_found": 100,
+      "error_count": 0,
+      "tested": 9
+    }
+  }
+}
