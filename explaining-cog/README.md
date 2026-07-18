@@ -20,7 +20,7 @@ next run:
 The current version is:
 <!-- [[[cog
 import cog, importlib.metadata
-v = importlib.metadata.version("cog")
+v = importlib.metadata.version("cogapp")
 cog.out(f"**{v}**")
 ]]] -->
 <!-- [[[end]]] -->
