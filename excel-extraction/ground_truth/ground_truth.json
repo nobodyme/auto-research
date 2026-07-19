@@ -1,0 +1,2781 @@
+{
+  "sheets": {
+    "Sales": {
+      "dimensions": {
+        "max_row": 42,
+        "max_column": 9
+      },
+      "frozen_panes": "A2",
+      "merged_cells": [
+        "A42:E42"
+      ],
+      "tables": [
+        {
+          "name": "SalesTable",
+          "ref": "A1:I41"
+        }
+      ],
+      "charts": [
+        {
+          "type": "BarChart",
+          "title": "Revenue by Region",
+          "series_count": 1
+        }
+      ],
+      "hyperlinks": [],
+      "comments": [],
+      "column_widths": {
+        "A": 12.0,
+        "B": 10.0,
+        "C": 12.0,
+        "D": 8.0,
+        "E": 12.0,
+        "F": 14.0,
+        "G": 12.0,
+        "H": 14.0,
+        "I": 12.0
+      },
+      "cells": {
+        "A1": {
+          "value": "Date",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B1": {
+          "value": "Region",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C1": {
+          "value": "Product",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D1": {
+          "value": "Units",
+          "formula": null,
+          "data_type": "s"
+        },
+        "E1": {
+          "value": "Unit Price",
+          "formula": null,
+          "data_type": "s"
+        },
+        "F1": {
+          "value": "Revenue",
+          "formula": null,
+          "data_type": "s"
+        },
+        "G1": {
+          "value": "Cost",
+          "formula": null,
+          "data_type": "s"
+        },
+        "H1": {
+          "value": "Profit",
+          "formula": null,
+          "data_type": "s"
+        },
+        "I1": {
+          "value": "Margin %",
+          "formula": null,
+          "data_type": "s"
+        },
+        "A2": {
+          "value": "2024-01-01",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B2": {
+          "value": "North",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C2": {
+          "value": "Widget",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D2": {
+          "value": 5,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E2": {
+          "value": 12.5,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F2": {
+          "value": 62.5,
+          "formula": "=D2*E2",
+          "data_type": "f"
+        },
+        "G2": {
+          "value": 35.0,
+          "formula": "=D2*7.0",
+          "data_type": "f"
+        },
+        "H2": {
+          "value": 27.5,
+          "formula": "=F2-G2",
+          "data_type": "f"
+        },
+        "I2": {
+          "value": 0.44,
+          "formula": "=IF(F2=0,0,H2/F2)",
+          "data_type": "f"
+        },
+        "A3": {
+          "value": "2024-01-04",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B3": {
+          "value": "South",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C3": {
+          "value": "Gadget",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D3": {
+          "value": 8,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E3": {
+          "value": 25,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F3": {
+          "value": 200.0,
+          "formula": "=D3*E3",
+          "data_type": "f"
+        },
+        "G3": {
+          "value": 112.0,
+          "formula": "=D3*14.0",
+          "data_type": "f"
+        },
+        "H3": {
+          "value": 88.0,
+          "formula": "=F3-G3",
+          "data_type": "f"
+        },
+        "I3": {
+          "value": 0.44,
+          "formula": "=IF(F3=0,0,H3/F3)",
+          "data_type": "f"
+        },
+        "A4": {
+          "value": "2024-01-07",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B4": {
+          "value": "East",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C4": {
+          "value": "Sprocket",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D4": {
+          "value": 11,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E4": {
+          "value": 4,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F4": {
+          "value": 44.0,
+          "formula": "=D4*E4",
+          "data_type": "f"
+        },
+        "G4": {
+          "value": 27.5,
+          "formula": "=D4*2.5",
+          "data_type": "f"
+        },
+        "H4": {
+          "value": 16.5,
+          "formula": "=F4-G4",
+          "data_type": "f"
+        },
+        "I4": {
+          "value": 0.375,
+          "formula": "=IF(F4=0,0,H4/F4)",
+          "data_type": "f"
+        },
+        "A5": {
+          "value": "2024-01-10",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B5": {
+          "value": "West",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C5": {
+          "value": "Cog",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D5": {
+          "value": 14,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E5": {
+          "value": 1.5,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F5": {
+          "value": 21.0,
+          "formula": "=D5*E5",
+          "data_type": "f"
+        },
+        "G5": {
+          "value": 11.200000000000001,
+          "formula": "=D5*0.8",
+          "data_type": "f"
+        },
+        "H5": {
+          "value": 9.799999999999999,
+          "formula": "=F5-G5",
+          "data_type": "f"
+        },
+        "I5": {
+          "value": 0.4666666666666666,
+          "formula": "=IF(F5=0,0,H5/F5)",
+          "data_type": "f"
+        },
+        "A6": {
+          "value": "2024-01-13",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B6": {
+          "value": "North",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C6": {
+          "value": "Widget",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D6": {
+          "value": 17,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E6": {
+          "value": 12.5,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F6": {
+          "value": 212.5,
+          "formula": "=D6*E6",
+          "data_type": "f"
+        },
+        "G6": {
+          "value": 119.0,
+          "formula": "=D6*7.0",
+          "data_type": "f"
+        },
+        "H6": {
+          "value": 93.5,
+          "formula": "=F6-G6",
+          "data_type": "f"
+        },
+        "I6": {
+          "value": 0.44,
+          "formula": "=IF(F6=0,0,H6/F6)",
+          "data_type": "f"
+        },
+        "A7": {
+          "value": "2024-01-16",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B7": {
+          "value": "South",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C7": {
+          "value": "Gadget",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D7": {
+          "value": 20,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E7": {
+          "value": 25,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F7": {
+          "value": 500.0,
+          "formula": "=D7*E7",
+          "data_type": "f"
+        },
+        "G7": {
+          "value": 280.0,
+          "formula": "=D7*14.0",
+          "data_type": "f"
+        },
+        "H7": {
+          "value": 220.0,
+          "formula": "=F7-G7",
+          "data_type": "f"
+        },
+        "I7": {
+          "value": 0.44,
+          "formula": "=IF(F7=0,0,H7/F7)",
+          "data_type": "f"
+        },
+        "A8": {
+          "value": "2024-01-19",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B8": {
+          "value": "East",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C8": {
+          "value": "Sprocket",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D8": {
+          "value": 23,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E8": {
+          "value": 4,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F8": {
+          "value": 92.0,
+          "formula": "=D8*E8",
+          "data_type": "f"
+        },
+        "G8": {
+          "value": 57.5,
+          "formula": "=D8*2.5",
+          "data_type": "f"
+        },
+        "H8": {
+          "value": 34.5,
+          "formula": "=F8-G8",
+          "data_type": "f"
+        },
+        "I8": {
+          "value": 0.375,
+          "formula": "=IF(F8=0,0,H8/F8)",
+          "data_type": "f"
+        },
+        "A9": {
+          "value": "2024-01-22",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B9": {
+          "value": "West",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C9": {
+          "value": "Cog",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D9": {
+          "value": 26,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E9": {
+          "value": 1.5,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F9": {
+          "value": 39.0,
+          "formula": "=D9*E9",
+          "data_type": "f"
+        },
+        "G9": {
+          "value": 20.8,
+          "formula": "=D9*0.8",
+          "data_type": "f"
+        },
+        "H9": {
+          "value": 18.2,
+          "formula": "=F9-G9",
+          "data_type": "f"
+        },
+        "I9": {
+          "value": 0.4666666666666667,
+          "formula": "=IF(F9=0,0,H9/F9)",
+          "data_type": "f"
+        },
+        "A10": {
+          "value": "2024-01-25",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B10": {
+          "value": "North",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C10": {
+          "value": "Widget",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D10": {
+          "value": 29,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E10": {
+          "value": 12.5,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F10": {
+          "value": 362.5,
+          "formula": "=D10*E10",
+          "data_type": "f"
+        },
+        "G10": {
+          "value": 203.0,
+          "formula": "=D10*7.0",
+          "data_type": "f"
+        },
+        "H10": {
+          "value": 159.5,
+          "formula": "=F10-G10",
+          "data_type": "f"
+        },
+        "I10": {
+          "value": 0.44,
+          "formula": "=IF(F10=0,0,H10/F10)",
+          "data_type": "f"
+        },
+        "A11": {
+          "value": "2024-01-28",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B11": {
+          "value": "South",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C11": {
+          "value": "Gadget",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D11": {
+          "value": 32,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E11": {
+          "value": 25,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F11": {
+          "value": 800.0,
+          "formula": "=D11*E11",
+          "data_type": "f"
+        },
+        "G11": {
+          "value": 448.0,
+          "formula": "=D11*14.0",
+          "data_type": "f"
+        },
+        "H11": {
+          "value": 352.0,
+          "formula": "=F11-G11",
+          "data_type": "f"
+        },
+        "I11": {
+          "value": 0.44,
+          "formula": "=IF(F11=0,0,H11/F11)",
+          "data_type": "f"
+        },
+        "A12": {
+          "value": "2024-01-31",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B12": {
+          "value": "East",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C12": {
+          "value": "Sprocket",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D12": {
+          "value": 35,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E12": {
+          "value": 4,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F12": {
+          "value": 140.0,
+          "formula": "=D12*E12",
+          "data_type": "f"
+        },
+        "G12": {
+          "value": 87.5,
+          "formula": "=D12*2.5",
+          "data_type": "f"
+        },
+        "H12": {
+          "value": 52.5,
+          "formula": "=F12-G12",
+          "data_type": "f"
+        },
+        "I12": {
+          "value": 0.375,
+          "formula": "=IF(F12=0,0,H12/F12)",
+          "data_type": "f"
+        },
+        "A13": {
+          "value": "2024-02-03",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B13": {
+          "value": "West",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C13": {
+          "value": "Cog",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D13": {
+          "value": 38,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E13": {
+          "value": 1.5,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F13": {
+          "value": 57.0,
+          "formula": "=D13*E13",
+          "data_type": "f"
+        },
+        "G13": {
+          "value": 30.400000000000002,
+          "formula": "=D13*0.8",
+          "data_type": "f"
+        },
+        "H13": {
+          "value": 26.599999999999998,
+          "formula": "=F13-G13",
+          "data_type": "f"
+        },
+        "I13": {
+          "value": 0.4666666666666666,
+          "formula": "=IF(F13=0,0,H13/F13)",
+          "data_type": "f"
+        },
+        "A14": {
+          "value": "2024-02-06",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B14": {
+          "value": "North",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C14": {
+          "value": "Widget",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D14": {
+          "value": 41,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E14": {
+          "value": 12.5,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F14": {
+          "value": 512.5,
+          "formula": "=D14*E14",
+          "data_type": "f"
+        },
+        "G14": {
+          "value": 287.0,
+          "formula": "=D14*7.0",
+          "data_type": "f"
+        },
+        "H14": {
+          "value": 225.5,
+          "formula": "=F14-G14",
+          "data_type": "f"
+        },
+        "I14": {
+          "value": 0.44,
+          "formula": "=IF(F14=0,0,H14/F14)",
+          "data_type": "f"
+        },
+        "A15": {
+          "value": "2024-02-09",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B15": {
+          "value": "South",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C15": {
+          "value": "Gadget",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D15": {
+          "value": 44,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E15": {
+          "value": 25,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F15": {
+          "value": 1100.0,
+          "formula": "=D15*E15",
+          "data_type": "f"
+        },
+        "G15": {
+          "value": 616.0,
+          "formula": "=D15*14.0",
+          "data_type": "f"
+        },
+        "H15": {
+          "value": 484.0,
+          "formula": "=F15-G15",
+          "data_type": "f"
+        },
+        "I15": {
+          "value": 0.44,
+          "formula": "=IF(F15=0,0,H15/F15)",
+          "data_type": "f"
+        },
+        "A16": {
+          "value": "2024-02-12",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B16": {
+          "value": "East",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C16": {
+          "value": "Sprocket",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D16": {
+          "value": 47,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E16": {
+          "value": 4,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F16": {
+          "value": 188.0,
+          "formula": "=D16*E16",
+          "data_type": "f"
+        },
+        "G16": {
+          "value": 117.5,
+          "formula": "=D16*2.5",
+          "data_type": "f"
+        },
+        "H16": {
+          "value": 70.5,
+          "formula": "=F16-G16",
+          "data_type": "f"
+        },
+        "I16": {
+          "value": 0.375,
+          "formula": "=IF(F16=0,0,H16/F16)",
+          "data_type": "f"
+        },
+        "A17": {
+          "value": "2024-02-15",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B17": {
+          "value": "West",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C17": {
+          "value": "Cog",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D17": {
+          "value": 50,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E17": {
+          "value": 1.5,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F17": {
+          "value": 75.0,
+          "formula": "=D17*E17",
+          "data_type": "f"
+        },
+        "G17": {
+          "value": 40.0,
+          "formula": "=D17*0.8",
+          "data_type": "f"
+        },
+        "H17": {
+          "value": 35.0,
+          "formula": "=F17-G17",
+          "data_type": "f"
+        },
+        "I17": {
+          "value": 0.4666666666666667,
+          "formula": "=IF(F17=0,0,H17/F17)",
+          "data_type": "f"
+        },
+        "A18": {
+          "value": "2024-02-18",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B18": {
+          "value": "North",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C18": {
+          "value": "Widget",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D18": {
+          "value": 6,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E18": {
+          "value": 12.5,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F18": {
+          "value": 75.0,
+          "formula": "=D18*E18",
+          "data_type": "f"
+        },
+        "G18": {
+          "value": 42.0,
+          "formula": "=D18*7.0",
+          "data_type": "f"
+        },
+        "H18": {
+          "value": 33.0,
+          "formula": "=F18-G18",
+          "data_type": "f"
+        },
+        "I18": {
+          "value": 0.44,
+          "formula": "=IF(F18=0,0,H18/F18)",
+          "data_type": "f"
+        },
+        "A19": {
+          "value": "2024-02-21",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B19": {
+          "value": "South",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C19": {
+          "value": "Gadget",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D19": {
+          "value": 9,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E19": {
+          "value": 25,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F19": {
+          "value": 225.0,
+          "formula": "=D19*E19",
+          "data_type": "f"
+        },
+        "G19": {
+          "value": 126.0,
+          "formula": "=D19*14.0",
+          "data_type": "f"
+        },
+        "H19": {
+          "value": 99.0,
+          "formula": "=F19-G19",
+          "data_type": "f"
+        },
+        "I19": {
+          "value": 0.44,
+          "formula": "=IF(F19=0,0,H19/F19)",
+          "data_type": "f"
+        },
+        "A20": {
+          "value": "2024-02-24",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B20": {
+          "value": "East",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C20": {
+          "value": "Sprocket",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D20": {
+          "value": 12,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E20": {
+          "value": 4,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F20": {
+          "value": 48.0,
+          "formula": "=D20*E20",
+          "data_type": "f"
+        },
+        "G20": {
+          "value": 30.0,
+          "formula": "=D20*2.5",
+          "data_type": "f"
+        },
+        "H20": {
+          "value": 18.0,
+          "formula": "=F20-G20",
+          "data_type": "f"
+        },
+        "I20": {
+          "value": 0.375,
+          "formula": "=IF(F20=0,0,H20/F20)",
+          "data_type": "f"
+        },
+        "A21": {
+          "value": "2024-02-27",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B21": {
+          "value": "West",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C21": {
+          "value": "Cog",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D21": {
+          "value": 15,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E21": {
+          "value": 1.5,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F21": {
+          "value": 22.5,
+          "formula": "=D21*E21",
+          "data_type": "f"
+        },
+        "G21": {
+          "value": 12.0,
+          "formula": "=D21*0.8",
+          "data_type": "f"
+        },
+        "H21": {
+          "value": 10.5,
+          "formula": "=F21-G21",
+          "data_type": "f"
+        },
+        "I21": {
+          "value": 0.4666666666666667,
+          "formula": "=IF(F21=0,0,H21/F21)",
+          "data_type": "f"
+        },
+        "A22": {
+          "value": "2024-03-01",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B22": {
+          "value": "North",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C22": {
+          "value": "Widget",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D22": {
+          "value": 18,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E22": {
+          "value": 12.5,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F22": {
+          "value": 225.0,
+          "formula": "=D22*E22",
+          "data_type": "f"
+        },
+        "G22": {
+          "value": 126.0,
+          "formula": "=D22*7.0",
+          "data_type": "f"
+        },
+        "H22": {
+          "value": 99.0,
+          "formula": "=F22-G22",
+          "data_type": "f"
+        },
+        "I22": {
+          "value": 0.44,
+          "formula": "=IF(F22=0,0,H22/F22)",
+          "data_type": "f"
+        },
+        "A23": {
+          "value": "2024-03-04",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B23": {
+          "value": "South",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C23": {
+          "value": "Gadget",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D23": {
+          "value": 21,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E23": {
+          "value": 25,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F23": {
+          "value": 525.0,
+          "formula": "=D23*E23",
+          "data_type": "f"
+        },
+        "G23": {
+          "value": 294.0,
+          "formula": "=D23*14.0",
+          "data_type": "f"
+        },
+        "H23": {
+          "value": 231.0,
+          "formula": "=F23-G23",
+          "data_type": "f"
+        },
+        "I23": {
+          "value": 0.44,
+          "formula": "=IF(F23=0,0,H23/F23)",
+          "data_type": "f"
+        },
+        "A24": {
+          "value": "2024-03-07",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B24": {
+          "value": "East",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C24": {
+          "value": "Sprocket",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D24": {
+          "value": 24,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E24": {
+          "value": 4,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F24": {
+          "value": 96.0,
+          "formula": "=D24*E24",
+          "data_type": "f"
+        },
+        "G24": {
+          "value": 60.0,
+          "formula": "=D24*2.5",
+          "data_type": "f"
+        },
+        "H24": {
+          "value": 36.0,
+          "formula": "=F24-G24",
+          "data_type": "f"
+        },
+        "I24": {
+          "value": 0.375,
+          "formula": "=IF(F24=0,0,H24/F24)",
+          "data_type": "f"
+        },
+        "A25": {
+          "value": "2024-03-10",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B25": {
+          "value": "West",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C25": {
+          "value": "Cog",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D25": {
+          "value": 27,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E25": {
+          "value": 1.5,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F25": {
+          "value": 40.5,
+          "formula": "=D25*E25",
+          "data_type": "f"
+        },
+        "G25": {
+          "value": 21.6,
+          "formula": "=D25*0.8",
+          "data_type": "f"
+        },
+        "H25": {
+          "value": 18.9,
+          "formula": "=F25-G25",
+          "data_type": "f"
+        },
+        "I25": {
+          "value": 0.4666666666666666,
+          "formula": "=IF(F25=0,0,H25/F25)",
+          "data_type": "f"
+        },
+        "A26": {
+          "value": "2024-03-13",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B26": {
+          "value": "North",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C26": {
+          "value": "Widget",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D26": {
+          "value": 30,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E26": {
+          "value": 12.5,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F26": {
+          "value": 375.0,
+          "formula": "=D26*E26",
+          "data_type": "f"
+        },
+        "G26": {
+          "value": 210.0,
+          "formula": "=D26*7.0",
+          "data_type": "f"
+        },
+        "H26": {
+          "value": 165.0,
+          "formula": "=F26-G26",
+          "data_type": "f"
+        },
+        "I26": {
+          "value": 0.44,
+          "formula": "=IF(F26=0,0,H26/F26)",
+          "data_type": "f"
+        },
+        "A27": {
+          "value": "2024-03-16",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B27": {
+          "value": "South",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C27": {
+          "value": "Gadget",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D27": {
+          "value": 33,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E27": {
+          "value": 25,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F27": {
+          "value": 825.0,
+          "formula": "=D27*E27",
+          "data_type": "f"
+        },
+        "G27": {
+          "value": 462.0,
+          "formula": "=D27*14.0",
+          "data_type": "f"
+        },
+        "H27": {
+          "value": 363.0,
+          "formula": "=F27-G27",
+          "data_type": "f"
+        },
+        "I27": {
+          "value": 0.44,
+          "formula": "=IF(F27=0,0,H27/F27)",
+          "data_type": "f"
+        },
+        "A28": {
+          "value": "2024-03-19",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B28": {
+          "value": "East",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C28": {
+          "value": "Sprocket",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D28": {
+          "value": 36,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E28": {
+          "value": 4,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F28": {
+          "value": 144.0,
+          "formula": "=D28*E28",
+          "data_type": "f"
+        },
+        "G28": {
+          "value": 90.0,
+          "formula": "=D28*2.5",
+          "data_type": "f"
+        },
+        "H28": {
+          "value": 54.0,
+          "formula": "=F28-G28",
+          "data_type": "f"
+        },
+        "I28": {
+          "value": 0.375,
+          "formula": "=IF(F28=0,0,H28/F28)",
+          "data_type": "f"
+        },
+        "A29": {
+          "value": "2024-03-22",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B29": {
+          "value": "West",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C29": {
+          "value": "Cog",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D29": {
+          "value": 39,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E29": {
+          "value": 1.5,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F29": {
+          "value": 58.5,
+          "formula": "=D29*E29",
+          "data_type": "f"
+        },
+        "G29": {
+          "value": 31.200000000000003,
+          "formula": "=D29*0.8",
+          "data_type": "f"
+        },
+        "H29": {
+          "value": 27.299999999999997,
+          "formula": "=F29-G29",
+          "data_type": "f"
+        },
+        "I29": {
+          "value": 0.4666666666666666,
+          "formula": "=IF(F29=0,0,H29/F29)",
+          "data_type": "f"
+        },
+        "A30": {
+          "value": "2024-03-25",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B30": {
+          "value": "North",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C30": {
+          "value": "Widget",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D30": {
+          "value": 42,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E30": {
+          "value": 12.5,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F30": {
+          "value": 525.0,
+          "formula": "=D30*E30",
+          "data_type": "f"
+        },
+        "G30": {
+          "value": 294.0,
+          "formula": "=D30*7.0",
+          "data_type": "f"
+        },
+        "H30": {
+          "value": 231.0,
+          "formula": "=F30-G30",
+          "data_type": "f"
+        },
+        "I30": {
+          "value": 0.44,
+          "formula": "=IF(F30=0,0,H30/F30)",
+          "data_type": "f"
+        },
+        "A31": {
+          "value": "2024-03-28",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B31": {
+          "value": "South",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C31": {
+          "value": "Gadget",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D31": {
+          "value": 45,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E31": {
+          "value": 25,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F31": {
+          "value": 1125.0,
+          "formula": "=D31*E31",
+          "data_type": "f"
+        },
+        "G31": {
+          "value": 630.0,
+          "formula": "=D31*14.0",
+          "data_type": "f"
+        },
+        "H31": {
+          "value": 495.0,
+          "formula": "=F31-G31",
+          "data_type": "f"
+        },
+        "I31": {
+          "value": 0.44,
+          "formula": "=IF(F31=0,0,H31/F31)",
+          "data_type": "f"
+        },
+        "A32": {
+          "value": "2024-03-31",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B32": {
+          "value": "East",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C32": {
+          "value": "Sprocket",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D32": {
+          "value": 48,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E32": {
+          "value": 4,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F32": {
+          "value": 192.0,
+          "formula": "=D32*E32",
+          "data_type": "f"
+        },
+        "G32": {
+          "value": 120.0,
+          "formula": "=D32*2.5",
+          "data_type": "f"
+        },
+        "H32": {
+          "value": 72.0,
+          "formula": "=F32-G32",
+          "data_type": "f"
+        },
+        "I32": {
+          "value": 0.375,
+          "formula": "=IF(F32=0,0,H32/F32)",
+          "data_type": "f"
+        },
+        "A33": {
+          "value": "2024-04-03",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B33": {
+          "value": "West",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C33": {
+          "value": "Cog",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D33": {
+          "value": 51,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E33": {
+          "value": 1.5,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F33": {
+          "value": 76.5,
+          "formula": "=D33*E33",
+          "data_type": "f"
+        },
+        "G33": {
+          "value": 40.800000000000004,
+          "formula": "=D33*0.8",
+          "data_type": "f"
+        },
+        "H33": {
+          "value": 35.699999999999996,
+          "formula": "=F33-G33",
+          "data_type": "f"
+        },
+        "I33": {
+          "value": 0.4666666666666666,
+          "formula": "=IF(F33=0,0,H33/F33)",
+          "data_type": "f"
+        },
+        "A34": {
+          "value": "2024-04-06",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B34": {
+          "value": "North",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C34": {
+          "value": "Widget",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D34": {
+          "value": 7,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E34": {
+          "value": 12.5,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F34": {
+          "value": 87.5,
+          "formula": "=D34*E34",
+          "data_type": "f"
+        },
+        "G34": {
+          "value": 49.0,
+          "formula": "=D34*7.0",
+          "data_type": "f"
+        },
+        "H34": {
+          "value": 38.5,
+          "formula": "=F34-G34",
+          "data_type": "f"
+        },
+        "I34": {
+          "value": 0.44,
+          "formula": "=IF(F34=0,0,H34/F34)",
+          "data_type": "f"
+        },
+        "A35": {
+          "value": "2024-04-09",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B35": {
+          "value": "South",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C35": {
+          "value": "Gadget",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D35": {
+          "value": 10,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E35": {
+          "value": 25,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F35": {
+          "value": 250.0,
+          "formula": "=D35*E35",
+          "data_type": "f"
+        },
+        "G35": {
+          "value": 140.0,
+          "formula": "=D35*14.0",
+          "data_type": "f"
+        },
+        "H35": {
+          "value": 110.0,
+          "formula": "=F35-G35",
+          "data_type": "f"
+        },
+        "I35": {
+          "value": 0.44,
+          "formula": "=IF(F35=0,0,H35/F35)",
+          "data_type": "f"
+        },
+        "A36": {
+          "value": "2024-04-12",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B36": {
+          "value": "East",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C36": {
+          "value": "Sprocket",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D36": {
+          "value": 13,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E36": {
+          "value": 4,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F36": {
+          "value": 52.0,
+          "formula": "=D36*E36",
+          "data_type": "f"
+        },
+        "G36": {
+          "value": 32.5,
+          "formula": "=D36*2.5",
+          "data_type": "f"
+        },
+        "H36": {
+          "value": 19.5,
+          "formula": "=F36-G36",
+          "data_type": "f"
+        },
+        "I36": {
+          "value": 0.375,
+          "formula": "=IF(F36=0,0,H36/F36)",
+          "data_type": "f"
+        },
+        "A37": {
+          "value": "2024-04-15",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B37": {
+          "value": "West",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C37": {
+          "value": "Cog",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D37": {
+          "value": 16,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E37": {
+          "value": 1.5,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F37": {
+          "value": 24.0,
+          "formula": "=D37*E37",
+          "data_type": "f"
+        },
+        "G37": {
+          "value": 12.8,
+          "formula": "=D37*0.8",
+          "data_type": "f"
+        },
+        "H37": {
+          "value": 11.2,
+          "formula": "=F37-G37",
+          "data_type": "f"
+        },
+        "I37": {
+          "value": 0.4666666666666666,
+          "formula": "=IF(F37=0,0,H37/F37)",
+          "data_type": "f"
+        },
+        "A38": {
+          "value": "2024-04-18",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B38": {
+          "value": "North",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C38": {
+          "value": "Widget",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D38": {
+          "value": 19,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E38": {
+          "value": 12.5,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F38": {
+          "value": 237.5,
+          "formula": "=D38*E38",
+          "data_type": "f"
+        },
+        "G38": {
+          "value": 133.0,
+          "formula": "=D38*7.0",
+          "data_type": "f"
+        },
+        "H38": {
+          "value": 104.5,
+          "formula": "=F38-G38",
+          "data_type": "f"
+        },
+        "I38": {
+          "value": 0.44,
+          "formula": "=IF(F38=0,0,H38/F38)",
+          "data_type": "f"
+        },
+        "A39": {
+          "value": "2024-04-21",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B39": {
+          "value": "South",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C39": {
+          "value": "Gadget",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D39": {
+          "value": 22,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E39": {
+          "value": 25,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F39": {
+          "value": 550.0,
+          "formula": "=D39*E39",
+          "data_type": "f"
+        },
+        "G39": {
+          "value": 308.0,
+          "formula": "=D39*14.0",
+          "data_type": "f"
+        },
+        "H39": {
+          "value": 242.0,
+          "formula": "=F39-G39",
+          "data_type": "f"
+        },
+        "I39": {
+          "value": 0.44,
+          "formula": "=IF(F39=0,0,H39/F39)",
+          "data_type": "f"
+        },
+        "A40": {
+          "value": "2024-04-24",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B40": {
+          "value": "East",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C40": {
+          "value": "Sprocket",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D40": {
+          "value": 25,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E40": {
+          "value": 4,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F40": {
+          "value": 100.0,
+          "formula": "=D40*E40",
+          "data_type": "f"
+        },
+        "G40": {
+          "value": 62.5,
+          "formula": "=D40*2.5",
+          "data_type": "f"
+        },
+        "H40": {
+          "value": 37.5,
+          "formula": "=F40-G40",
+          "data_type": "f"
+        },
+        "I40": {
+          "value": 0.375,
+          "formula": "=IF(F40=0,0,H40/F40)",
+          "data_type": "f"
+        },
+        "A41": {
+          "value": "2024-04-27",
+          "formula": null,
+          "data_type": "d"
+        },
+        "B41": {
+          "value": "West",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C41": {
+          "value": "Cog",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D41": {
+          "value": 28,
+          "formula": null,
+          "data_type": "n"
+        },
+        "E41": {
+          "value": 1.5,
+          "formula": null,
+          "data_type": "n"
+        },
+        "F41": {
+          "value": 42.0,
+          "formula": "=D41*E41",
+          "data_type": "f"
+        },
+        "G41": {
+          "value": 22.400000000000002,
+          "formula": "=D41*0.8",
+          "data_type": "f"
+        },
+        "H41": {
+          "value": 19.599999999999998,
+          "formula": "=F41-G41",
+          "data_type": "f"
+        },
+        "I41": {
+          "value": 0.4666666666666666,
+          "formula": "=IF(F41=0,0,H41/F41)",
+          "data_type": "f"
+        },
+        "A42": {
+          "value": "Totals",
+          "formula": null,
+          "data_type": "s"
+        },
+        "F42": {
+          "value": 10327.0,
+          "formula": "=SUM(F2:F41)",
+          "data_type": "f"
+        },
+        "G42": {
+          "value": 5842.2,
+          "formula": "=SUM(G2:G41)",
+          "data_type": "f"
+        },
+        "H42": {
+          "value": 4484.8,
+          "formula": "=SUM(H2:H41)",
+          "data_type": "f"
+        },
+        "I42": {
+          "value": 0.4342790742713276,
+          "formula": "=IF(F42=0,0,H42/F42)",
+          "data_type": "f"
+        }
+      }
+    },
+    "Inventory": {
+      "dimensions": {
+        "max_row": 12,
+        "max_column": 7
+      },
+      "frozen_panes": "B2",
+      "merged_cells": [],
+      "tables": [],
+      "charts": [
+        {
+          "type": "BarChart",
+          "title": "Stock by SKU",
+          "series_count": 1
+        }
+      ],
+      "hyperlinks": [],
+      "comments": [],
+      "column_widths": {
+        "A": 8.0,
+        "B": 18.0,
+        "E": 14.0,
+        "G": 22.0
+      },
+      "cells": {
+        "A1": {
+          "value": "SKU",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B1": {
+          "value": "Item",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C1": {
+          "value": "Stock",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D1": {
+          "value": "Reorder?",
+          "formula": null,
+          "data_type": "s"
+        },
+        "E1": {
+          "value": "Last Restock",
+          "formula": null,
+          "data_type": "s"
+        },
+        "F1": {
+          "value": "Unit Cost",
+          "formula": null,
+          "data_type": "s"
+        },
+        "G1": {
+          "value": "Notes",
+          "formula": null,
+          "data_type": "s"
+        },
+        "A2": {
+          "value": "A-001",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B2": {
+          "value": "Bearing 6mm",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C2": {
+          "value": 320,
+          "formula": null,
+          "data_type": "n"
+        },
+        "D2": {
+          "value": false,
+          "formula": null,
+          "data_type": "b"
+        },
+        "E2": {
+          "value": "2024-05-12",
+          "formula": null,
+          "data_type": "d"
+        },
+        "F2": {
+          "value": 1.2,
+          "formula": null,
+          "data_type": "n"
+        },
+        "G2": {
+          "value": "high turnover",
+          "formula": null,
+          "data_type": "s"
+        },
+        "A3": {
+          "value": "A-002",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B3": {
+          "value": "Bearing 8mm",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C3": {
+          "value": 18,
+          "formula": null,
+          "data_type": "n"
+        },
+        "D3": {
+          "value": true,
+          "formula": null,
+          "data_type": "b"
+        },
+        "E3": {
+          "value": "2024-02-01",
+          "formula": null,
+          "data_type": "d"
+        },
+        "F3": {
+          "value": 1.5,
+          "formula": null,
+          "data_type": "n"
+        },
+        "G3": {
+          "value": "reorder now",
+          "formula": null,
+          "data_type": "s"
+        },
+        "A4": {
+          "value": "A-003",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B4": {
+          "value": "Hex bolt M4",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C4": {
+          "value": 1042,
+          "formula": null,
+          "data_type": "n"
+        },
+        "D4": {
+          "value": false,
+          "formula": null,
+          "data_type": "b"
+        },
+        "E4": {
+          "value": "2024-06-18",
+          "formula": null,
+          "data_type": "d"
+        },
+        "F4": {
+          "value": 0.05,
+          "formula": null,
+          "data_type": "n"
+        },
+        "G4": {
+          "value": "ok",
+          "formula": null,
+          "data_type": "s"
+        },
+        "A5": {
+          "value": "A-004",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B5": {
+          "value": "Hex bolt M6",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C5": {
+          "value": 0,
+          "formula": null,
+          "data_type": "n"
+        },
+        "D5": {
+          "value": true,
+          "formula": null,
+          "data_type": "b"
+        },
+        "E5": {
+          "value": "2023-11-04",
+          "formula": null,
+          "data_type": "d"
+        },
+        "F5": {
+          "value": 0.09,
+          "formula": null,
+          "data_type": "n"
+        },
+        "G5": {
+          "value": "out of stock",
+          "formula": null,
+          "data_type": "s"
+        },
+        "A6": {
+          "value": "A-005",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B6": {
+          "value": "Hex nut M6",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C6": {
+          "value": 540,
+          "formula": null,
+          "data_type": "n"
+        },
+        "D6": {
+          "value": false,
+          "formula": null,
+          "data_type": "b"
+        },
+        "E6": {
+          "value": "2024-06-02",
+          "formula": null,
+          "data_type": "d"
+        },
+        "F6": {
+          "value": 0.04,
+          "formula": null,
+          "data_type": "n"
+        },
+        "G6": {
+          "value": "ok",
+          "formula": null,
+          "data_type": "s"
+        },
+        "A7": {
+          "value": "A-006",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B7": {
+          "value": "Washer 6mm",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C7": {
+          "value": 75,
+          "formula": null,
+          "data_type": "n"
+        },
+        "D7": {
+          "value": false,
+          "formula": null,
+          "data_type": "b"
+        },
+        "E7": {
+          "value": "2024-05-30",
+          "formula": null,
+          "data_type": "d"
+        },
+        "F7": {
+          "value": 0.02,
+          "formula": null,
+          "data_type": "n"
+        },
+        "G7": {
+          "value": "watch",
+          "formula": null,
+          "data_type": "s"
+        },
+        "A8": {
+          "value": "A-007",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B8": {
+          "value": "Spring 12mm",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C8": {
+          "value": 3,
+          "formula": null,
+          "data_type": "n"
+        },
+        "D8": {
+          "value": true,
+          "formula": null,
+          "data_type": "b"
+        },
+        "E8": {
+          "value": "2023-09-09",
+          "formula": null,
+          "data_type": "d"
+        },
+        "F8": {
+          "value": 0.85,
+          "formula": null,
+          "data_type": "n"
+        },
+        "G8": {
+          "value": "reorder now",
+          "formula": null,
+          "data_type": "s"
+        },
+        "A9": {
+          "value": "A-008",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B9": {
+          "value": "Spring 18mm",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C9": {
+          "value": 220,
+          "formula": null,
+          "data_type": "n"
+        },
+        "D9": {
+          "value": false,
+          "formula": null,
+          "data_type": "b"
+        },
+        "E9": {
+          "value": "2024-03-22",
+          "formula": null,
+          "data_type": "d"
+        },
+        "F9": {
+          "value": 1.1,
+          "formula": null,
+          "data_type": "n"
+        },
+        "G9": {
+          "value": "ok",
+          "formula": null,
+          "data_type": "s"
+        },
+        "A10": {
+          "value": "A-009",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B10": {
+          "value": "O-ring 10mm",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C10": {
+          "value": 0,
+          "formula": null,
+          "data_type": "n"
+        },
+        "D10": {
+          "value": true,
+          "formula": null,
+          "data_type": "b"
+        },
+        "E10": {
+          "value": "2023-12-01",
+          "formula": null,
+          "data_type": "d"
+        },
+        "F10": {
+          "value": 0.15,
+          "formula": null,
+          "data_type": "n"
+        },
+        "G10": {
+          "value": "out of stock",
+          "formula": null,
+          "data_type": "s"
+        },
+        "A11": {
+          "value": "A-010",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B11": {
+          "value": "O-ring 20mm",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C11": {
+          "value": 410,
+          "formula": null,
+          "data_type": "n"
+        },
+        "D11": {
+          "value": false,
+          "formula": null,
+          "data_type": "b"
+        },
+        "E11": {
+          "value": "2024-04-09",
+          "formula": null,
+          "data_type": "d"
+        },
+        "F11": {
+          "value": 0.25,
+          "formula": null,
+          "data_type": "n"
+        },
+        "G11": {
+          "value": "ok",
+          "formula": null,
+          "data_type": "s"
+        },
+        "A12": {
+          "value": "DIV0!",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B12": {
+          "value": "#DIV/0! sample",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C12": {
+          "value": 12,
+          "formula": null,
+          "data_type": "n"
+        },
+        "D12": {
+          "value": false,
+          "formula": null,
+          "data_type": "b"
+        },
+        "E12": {
+          "value": "2024-01-01",
+          "formula": null,
+          "data_type": "d"
+        },
+        "F12": {
+          "value": 0.1,
+          "formula": null,
+          "data_type": "n"
+        },
+        "G12": {
+          "value": "intentional error",
+          "formula": null,
+          "data_type": "s"
+        }
+      }
+    },
+    "Quarterly P&L": {
+      "dimensions": {
+        "max_row": 10,
+        "max_column": 6
+      },
+      "frozen_panes": null,
+      "merged_cells": [],
+      "tables": [],
+      "charts": [
+        {
+          "type": "PieChart",
+          "title": "Revenue Share",
+          "series_count": 1
+        },
+        {
+          "type": "LineChart",
+          "title": "Quarterly Trend",
+          "series_count": 1
+        }
+      ],
+      "hyperlinks": [],
+      "comments": [],
+      "column_widths": {
+        "A": 14.0,
+        "B": 14.0,
+        "C": 14.0,
+        "D": 16.0,
+        "E": 14.0,
+        "F": 14.0
+      },
+      "cells": {
+        "A1": {
+          "value": "Quarter",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B1": {
+          "value": "Revenue",
+          "formula": null,
+          "data_type": "s"
+        },
+        "C1": {
+          "value": "COGS",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D1": {
+          "value": "Gross Profit",
+          "formula": null,
+          "data_type": "s"
+        },
+        "E1": {
+          "value": "OpEx",
+          "formula": null,
+          "data_type": "s"
+        },
+        "F1": {
+          "value": "Net Income",
+          "formula": null,
+          "data_type": "s"
+        },
+        "A2": {
+          "value": "Q1 2024",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B2": {
+          "value": 482300,
+          "formula": null,
+          "data_type": "n"
+        },
+        "C2": {
+          "value": 218900,
+          "formula": null,
+          "data_type": "n"
+        },
+        "D2": {
+          "value": 263400.0,
+          "formula": "=B2-C2",
+          "data_type": "f"
+        },
+        "E2": {
+          "value": 154336.0,
+          "formula": "=B2*0.32",
+          "data_type": "f"
+        },
+        "F2": {
+          "value": 109064.0,
+          "formula": "=D2-E2",
+          "data_type": "f"
+        },
+        "A3": {
+          "value": "Q2 2024",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B3": {
+          "value": 555120,
+          "formula": null,
+          "data_type": "n"
+        },
+        "C3": {
+          "value": 244100,
+          "formula": null,
+          "data_type": "n"
+        },
+        "D3": {
+          "value": 311020.0,
+          "formula": "=B3-C3",
+          "data_type": "f"
+        },
+        "E3": {
+          "value": 177638.4,
+          "formula": "=B3*0.32",
+          "data_type": "f"
+        },
+        "F3": {
+          "value": 133381.6,
+          "formula": "=D3-E3",
+          "data_type": "f"
+        },
+        "A4": {
+          "value": "Q3 2024",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B4": {
+          "value": 612450,
+          "formula": null,
+          "data_type": "n"
+        },
+        "C4": {
+          "value": 271800,
+          "formula": null,
+          "data_type": "n"
+        },
+        "D4": {
+          "value": 340650.0,
+          "formula": "=B4-C4",
+          "data_type": "f"
+        },
+        "E4": {
+          "value": 195984.0,
+          "formula": "=B4*0.32",
+          "data_type": "f"
+        },
+        "F4": {
+          "value": 144666.0,
+          "formula": "=D4-E4",
+          "data_type": "f"
+        },
+        "A5": {
+          "value": "Q4 2024",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B5": {
+          "value": 701900,
+          "formula": null,
+          "data_type": "n"
+        },
+        "C5": {
+          "value": 309500,
+          "formula": null,
+          "data_type": "n"
+        },
+        "D5": {
+          "value": 392400.0,
+          "formula": "=B5-C5",
+          "data_type": "f"
+        },
+        "E5": {
+          "value": 224608.0,
+          "formula": "=B5*0.32",
+          "data_type": "f"
+        },
+        "F5": {
+          "value": 167792.0,
+          "formula": "=D5-E5",
+          "data_type": "f"
+        },
+        "A6": {
+          "value": "Total",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B6": {
+          "value": 2351770.0,
+          "formula": "=SUM(B2:B5)",
+          "data_type": "f"
+        },
+        "C6": {
+          "value": 1044300.0,
+          "formula": "=SUM(C2:C5)",
+          "data_type": "f"
+        },
+        "D6": {
+          "value": 1307470.0,
+          "formula": "=SUM(D2:D5)",
+          "data_type": "f"
+        },
+        "E6": {
+          "value": 752566.4,
+          "formula": "=SUM(E2:E5)",
+          "data_type": "f"
+        },
+        "F6": {
+          "value": 554903.6,
+          "formula": "=SUM(F2:F5)",
+          "data_type": "f"
+        },
+        "A8": {
+          "value": "Sales total (cross-sheet):",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B8": {
+          "value": 10327.0,
+          "formula": "='Sales'!F42",
+          "data_type": "f"
+        },
+        "A9": {
+          "value": "Best quarter revenue:",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B9": {
+          "value": 701900,
+          "formula": "=MAX(B2:B5)",
+          "data_type": "f"
+        },
+        "A10": {
+          "value": "SUMIF (revenue > 500k):",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B10": {
+          "value": 1869470.0,
+          "formula": "=SUMIF(B2:B5,\">500000\")",
+          "data_type": "f"
+        }
+      }
+    },
+    "Dashboard": {
+      "dimensions": {
+        "max_row": 14,
+        "max_column": 8
+      },
+      "frozen_panes": null,
+      "merged_cells": [
+        "A1:H1",
+        "A3:B3",
+        "A9:B9",
+        "D3:H3"
+      ],
+      "tables": [],
+      "charts": [
+        {
+          "type": "ScatterChart",
+          "title": "Unit Price vs Units Sold",
+          "series_count": 1
+        },
+        {
+          "type": "AreaChart",
+          "title": "Cumulative Inventory",
+          "series_count": 1
+        }
+      ],
+      "hyperlinks": [
+        {
+          "cell": "A10",
+          "target": "#'Sales'!A1",
+          "display": "Sales sheet"
+        },
+        {
+          "cell": "A11",
+          "target": "#'Inventory'!A1",
+          "display": "Inventory sheet"
+        },
+        {
+          "cell": "A12",
+          "target": "#'Quarterly P&L'!A1",
+          "display": "Quarterly P&L"
+        }
+      ],
+      "comments": [
+        {
+          "cell": "A14",
+          "author": "Open SWE",
+          "text": "Auto-generated by create_test_xlsx.py"
+        }
+      ],
+      "column_widths": {
+        "A": 22.0,
+        "B": 18.0,
+        "C": 4.0,
+        "D": 14.0,
+        "E": 14.0,
+        "F": 14.0,
+        "G": 14.0,
+        "H": 14.0
+      },
+      "cells": {
+        "A1": {
+          "value": "Operations Dashboard \u2014 2024",
+          "formula": null,
+          "data_type": "s"
+        },
+        "A3": {
+          "value": "Key Metrics",
+          "formula": null,
+          "data_type": "s"
+        },
+        "D3": {
+          "value": "Scatter: Price vs Units",
+          "formula": null,
+          "data_type": "s"
+        },
+        "A4": {
+          "value": "Total Revenue",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B4": {
+          "value": 10327.0,
+          "formula": "=SUM(Revenue)",
+          "data_type": "f"
+        },
+        "A5": {
+          "value": "Total Units Sold",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B5": {
+          "value": 1036.0,
+          "formula": "=SUM('Sales'!D2:D41)",
+          "data_type": "f"
+        },
+        "A6": {
+          "value": "Avg Margin",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B6": {
+          "value": 0.4304166666666667,
+          "formula": "=AVERAGE('Sales'!I2:I41)",
+          "data_type": "f"
+        },
+        "A7": {
+          "value": "Items needing reorder",
+          "formula": null,
+          "data_type": "s"
+        },
+        "B7": {
+          "value": 4,
+          "formula": "=COUNTIF(Inventory!D2:D12,TRUE)",
+          "data_type": "f"
+        },
+        "A9": {
+          "value": "Quick Links",
+          "formula": null,
+          "data_type": "s"
+        },
+        "A10": {
+          "value": "Sales sheet",
+          "formula": null,
+          "data_type": "s"
+        },
+        "A11": {
+          "value": "Inventory sheet",
+          "formula": null,
+          "data_type": "s"
+        },
+        "A12": {
+          "value": "Quarterly P&L",
+          "formula": null,
+          "data_type": "s"
+        },
+        "A14": {
+          "value": "Note: see dashboard for visualisations.",
+          "formula": null,
+          "data_type": "s"
+        }
+      }
+    },
+    "README": {
+      "dimensions": {
+        "max_row": 4,
+        "max_column": 1
+      },
+      "frozen_panes": null,
+      "merged_cells": [],
+      "tables": [],
+      "charts": [],
+      "hyperlinks": [],
+      "comments": [],
+      "column_widths": {},
+      "cells": {
+        "A1": {
+          "value": "This workbook is generated for benchmarking Excel extraction libraries.",
+          "formula": null,
+          "data_type": "s"
+        },
+        "A2": {
+          "value": "It contains: Sales, Inventory, Quarterly P&L, Dashboard, and this README.",
+          "formula": null,
+          "data_type": "s"
+        },
+        "A3": {
+          "value": "Charts: bar, line, pie, scatter, area.",
+          "formula": null,
+          "data_type": "s"
+        },
+        "A4": {
+          "value": "Features: formulas, merged cells, conditional formatting, hyperlinks, comments, tables, named ranges, frozen panes, dates, booleans, errors.",
+          "formula": null,
+          "data_type": "s"
+        }
+      }
+    }
+  },
+  "defined_names": {
+    "Revenue": "Sales!$F$2:$F$41"
+  }
+}
