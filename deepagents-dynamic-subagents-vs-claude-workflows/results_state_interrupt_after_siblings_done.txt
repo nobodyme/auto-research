@@ -1,0 +1,50 @@
+
+===== interrupt_resume =====
+/home/user/auto-research/deepagents-dynamic-subagents-vs-claude-workflows/exp_state.py:134: LangChainBetaWarning: The class `CodeInterpreterMiddleware` is in beta. It is actively being worked on, so the API may change.
+  middleware=[CodeInterpreterMiddleware()],
+{
+  "phase1_events": [
+    [
+      "start",
+      "job-1"
+    ],
+    [
+      "start",
+      "job-3"
+    ],
+    [
+      "start",
+      "job-2 ASK"
+    ],
+    [
+      "start",
+      "job-4"
+    ],
+    [
+      "end",
+      "job-1"
+    ],
+    [
+      "end",
+      "job-3"
+    ],
+    [
+      "end",
+      "job-4"
+    ]
+  ],
+  "interrupt_payload": [
+    {
+      "question": "approve?"
+    }
+  ],
+  "phase2_events_after_resume": [
+    [
+      "end",
+      "job-2 ASK"
+    ]
+  ],
+  "final_eval_result": [
+    "<result>[\"job-1 done\", \"job-2 ASK -&gt; human said yes\", \"job-3 done\", \"job-4 done\"]</result>"
+  ]
+}

@@ -1,0 +1,202 @@
+
+===== sequential =====
+/home/user/auto-research/deepagents-dynamic-subagents-vs-claude-workflows/exp_mechanics.py:36: LangChainBetaWarning: The class `CodeInterpreterMiddleware` is in beta. It is actively being worked on, so the API may change.
+  middleware=[CodeInterpreterMiddleware(**(mw_kwargs or {}))],
+{
+  "wall_s": 3.9,
+  "eval_result": "<result>[\"[worker] handled: item a\", \"[worker] handled: item b\", \"[worker] handled: item c\"]</result>",
+  "timeline": {
+    "dispatches": 3,
+    "peak_concurrency": 1,
+    "span_s": 3.03,
+    "start_order": [
+      "item a",
+      "item b",
+      "item c"
+    ]
+  }
+}
+
+===== chain =====
+{
+  "wall_s": 1.1,
+  "eval_result": "<result>bug -&gt; [bug-fixer] handled: Handle bug: App crashes when I upload a PNG\nfeature -&gt; [feature-analyst] handled: Handle feature: Please add dark mode\nquestion -&gt; [support-agent] handled: Handle question: How do I reset my password?\nbug -&gt; [bug-fixer] handled: Handle bug: Error 500 on checkout</result>",
+  "timeline": {
+    "dispatches": 8,
+    "peak_concurrency": 4,
+    "span_s": 0.87,
+    "start_order": [
+      "Please add dark mode",
+      "How do I reset my password?",
+      "Error 500 on checkout",
+      "App crashes when I upload a PNG",
+      "Handle question: How do I reset my passw",
+      "Handle feature: Please add dark mode",
+      "Handle bug: App crashes when I upload a ",
+      "Handle bug: Error 500 on checkout"
+    ]
+  }
+}
+
+===== fail_all =====
+{
+  "wall_s": 1.22,
+  "eval_result": "<error type=\"RuntimeError\">worker failed on: FAIL-2</error>",
+  "timeline": {
+    "dispatches": 3,
+    "peak_concurrency": 3,
+    "span_s": 1.0,
+    "start_order": [
+      "FAIL-2",
+      "ok-1",
+      "ok-3"
+    ]
+  },
+  "events": [
+    [
+      "start",
+      "FAIL-2"
+    ],
+    [
+      "start",
+      "ok-1"
+    ],
+    [
+      "start",
+      "ok-3"
+    ],
+    [
+      "error",
+      "FAIL-2"
+    ],
+    [
+      "end",
+      "ok-1"
+    ],
+    [
+      "end",
+      "ok-3"
+    ]
+  ]
+}
+
+===== fail_settled =====
+{
+  "wall_s": 1.19,
+  "eval_result": "<result>[\"[worker] handled: ok-1\", \"ERR: HostError: Host function failed\", \"[worker] handled: ok-3\"]</result>",
+  "timeline": {
+    "dispatches": 3,
+    "peak_concurrency": 3,
+    "span_s": 1.0,
+    "start_order": [
+      "FAIL-2",
+      "ok-1",
+      "ok-3"
+    ]
+  }
+}
+
+===== unknown =====
+{
+  "wall_s": 0.19,
+  "eval_result": "<result>We cannot invoke subagent does-not-exist because it does not exist, the only allowed types are `general-purpose`, `worker`, `classifier`, `bug-fixer`, `feature-analyst`, `support-agent`</result>",
+  "timeline": {
+    "dispatches": 0
+  }
+}
+
+===== cpu_loop =====
+{
+  "wall_s": 5.15,
+  "eval_result": "<error type=\"Timeout\">interrupted</error>",
+  "timeline": {
+    "dispatches": 0
+  }
+}
+
+===== big_fanout =====
+{
+  "wall_s": 2.56,
+  "eval_result": "<result>40</result>",
+  "timeline": {
+    "dispatches": 40,
+    "peak_concurrency": 32,
+    "span_s": 2.12,
+    "start_order": [
+      "unit 5",
+      "unit 4",
+      "unit 6",
+      "unit 2",
+      "unit 3",
+      "unit 19",
+      "unit 10",
+      "unit 12",
+      "unit 0",
+      "unit 17",
+      "unit 14",
+      "unit 21",
+      "unit 24",
+      "unit 22",
+      "unit 26",
+      "unit 9",
+      "unit 13",
+      "unit 8",
+      "unit 16",
+      "unit 23",
+      "unit 18",
+      "unit 25",
+      "unit 20",
+      "unit 1",
+      "unit 28",
+      "unit 11",
+      "unit 7",
+      "unit 27",
+      "unit 15",
+      "unit 29",
+      "unit 31",
+      "unit 30",
+      "unit 32",
+      "unit 33",
+      "unit 34",
+      "unit 39",
+      "unit 36",
+      "unit 35",
+      "unit 37",
+      "unit 38"
+    ]
+  }
+}
+
+===== loop_until =====
+{
+  "wall_s": 0.52,
+  "eval_result": "<result>{rounds: 3, found: 2}</result>",
+  "timeline": {
+    "dispatches": 3,
+    "peak_concurrency": 1,
+    "span_s": 0.33,
+    "start_order": [
+      "round 1",
+      "round 2",
+      "round 3 nothing-new"
+    ]
+  }
+}
+
+===== determinism =====
+{
+  "identical_results": true,
+  "identical_dispatch_sets": true,
+  "start_orders": [
+    [
+      "Error 500 on checkout",
+      "How do I reset my password?",
+      "Please add dark mode",
+      "App crashes when I upload a PNG",
+      "Handle bug: Error 500 on checkout",
+      "Handle question: How do I reset my passw",
+      "Handle bug: App crashes when I upload a ",
+      "Handle feature: Please add dark mode"
+    ]
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "wall_s": 0.94,
+  "eval_result": "<result>{typeofResult: \"string\", score: undefined, raw: \"[worker] handled: rate this\"}</result>",
+  "timeline": {
+    "dispatches": 1,
+    "peak_concurrency": 1,
+    "span_s": 0.1,
+    "start_order": [
+      "rate this"
+    ]
+  }
+}

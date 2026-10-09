@@ -1,0 +1,206 @@
+{
+  "summary": "Research probe: classify 4 support tickets then route each to a specialist (compare with deepagents dynamic subagents)",
+  "agentCount": 8,
+  "logs": [
+    "parallel[1] failed: boom",
+    "probes: {\"parallelWithThrowingThunk\":[\"ok-1\",null,\"ok-3\"]}"
+  ],
+  "result": {
+    "probes": {
+      "parallelWithThrowingThunk": [
+        "ok-1",
+        null,
+        "ok-3"
+      ]
+    },
+    "results": [
+      {
+        "id": "T1",
+        "category": "bug",
+        "outcome": "Likely cause: a 5MB upload or buffer size limit being exceeded; next step: reproduce and check the crash stack trace."
+      },
+      {
+        "id": "T2",
+        "category": "feature",
+        "outcome": "Ticket T2 (dark mode for the dashboard): effort S, impact M. A contained theming change with moderate user-visible value."
+      },
+      {
+        "id": "T3",
+        "category": "question",
+        "outcome": "Open Settings or Billing, go to the Invoices section, and click Export, choosing CSV as the format."
+      },
+      {
+        "id": "T4",
+        "category": "bug",
+        "outcome": "Likely a hardcoded 20-item limit or batch bug in cart processing; next, reproduce with 21 items and check server logs for the stack trace."
+      }
+    ]
+  },
+  "workflowProgress": [
+    {
+      "type": "workflow_phase",
+      "index": 1,
+      "title": "Probes"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 2,
+      "title": "Classify"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 3,
+      "title": "Handle"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 1,
+      "label": "classify T1",
+      "phaseIndex": 2,
+      "phaseTitle": "Classify",
+      "agentId": "ad1e68410b0f53527",
+      "model": "haiku",
+      "state": "done",
+      "startedAt": 1791523439046,
+      "lastProgressAt": 1791523439046,
+      "cached": true,
+      "resultPreview": "{\"category\":\"bug\"}",
+      "promptPreview": "Classify this support ticket as exactly one of bug, feature, question. Do not use any tools.\nTicket T1: The app crashes every time I upload a PNG larger than 5MB."
+    },
+    {
+      "type": "workflow_agent",
+      "index": 2,
+      "label": "classify T2",
+      "phaseIndex": 2,
+      "phaseTitle": "Classify",
+      "agentId": "abdc9acb156cc01d7",
+      "model": "haiku",
+      "state": "done",
+      "startedAt": 1791523439046,
+      "lastProgressAt": 1791523439046,
+      "cached": true,
+      "resultPreview": "{\"category\":\"feature\"}",
+      "promptPreview": "Classify this support ticket as exactly one of bug, feature, question. Do not use any tools.\nTicket T2: Please add a dark mode to the dashboard."
+    },
+    {
+      "type": "workflow_agent",
+      "index": 3,
+      "label": "classify T3",
+      "phaseIndex": 2,
+      "phaseTitle": "Classify",
+      "agentId": "aecaa20fa2117c61d",
+      "model": "haiku",
+      "state": "done",
+      "startedAt": 1791523439046,
+      "lastProgressAt": 1791523439046,
+      "cached": true,
+      "resultPreview": "{\"category\":\"question\"}",
+      "promptPreview": "Classify this support ticket as exactly one of bug, feature, question. Do not use any tools.\nTicket T3: How do I export my invoices as CSV?"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 4,
+      "label": "classify T4",
+      "phaseIndex": 2,
+      "phaseTitle": "Classify",
+      "agentId": "ab90bfed4dfe79b9e",
+      "model": "haiku",
+      "state": "done",
+      "startedAt": 1791523439046,
+      "lastProgressAt": 1791523439046,
+      "cached": true,
+      "resultPreview": "{\"category\":\"bug\"}",
+      "promptPreview": "Classify this support ticket as exactly one of bug, feature, question. Do not use any tools.\nTicket T4: Checkout returns HTTP 500 when the cart has more than 20 items."
+    },
+    {
+      "type": "workflow_agent",
+      "index": 5,
+      "label": "T1 -> bug",
+      "phaseIndex": 3,
+      "phaseTitle": "Handle",
+      "agentId": "a54964550892f31b2",
+      "model": "claude-haiku-5-5",
+      "state": "done",
+      "startedAt": 1791523439069,
+      "queuedAt": 1791523439046,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Likely cause: a 5MB upload or buffer size limit being excee…",
+      "promptPreview": "You are a bug triage specialist. In one sentence give the likely cause and the next step. Do not use any tools; answer from general knowledge. Keep it under 25 words.\nTicket T1: The app crashes every time I upload a PNG larger than 5MB.",
+      "promptFramed": true,
+      "lastProgressAt": 1791523442209,
+      "tokens": 46939,
+      "toolCalls": 1,
+      "durationMs": 3140,
+      "resultPreview": "{\"outcome\":\"Likely cause: a 5MB upload or buffer size limit being exceeded; next step: reproduce and check the crash stack trace.\"}"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 6,
+      "label": "T2 -> feature",
+      "phaseIndex": 3,
+      "phaseTitle": "Handle",
+      "agentId": "a5ea72a1c55a66fc8",
+      "model": "claude-haiku-5-5",
+      "state": "done",
+      "startedAt": 1791523439069,
+      "queuedAt": 1791523439046,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Ticket T2 (dark mode for the dashboard): effort S, impact M…",
+      "promptPreview": "You are a product analyst. In one sentence rate effort (S/M/L) and impact. Do not use any tools; answer from general knowledge. Keep it under 25 words.\nTicket T2: Please add a dark mode to the dashboard.",
+      "promptFramed": true,
+      "lastProgressAt": 1791523441269,
+      "tokens": 47041,
+      "toolCalls": 1,
+      "durationMs": 2199,
+      "resultPreview": "{\"outcome\":\"Ticket T2 (dark mode for the dashboard): effort S, impact M. A contained theming change with moderate user-visible value.\"}"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 7,
+      "label": "T3 -> question",
+      "phaseIndex": 3,
+      "phaseTitle": "Handle",
+      "agentId": "a446d6d226be464be",
+      "model": "claude-haiku-5-5",
+      "state": "done",
+      "startedAt": 1791523443008,
+      "queuedAt": 1791523439046,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Open Settings or Billing, go to the Invoices section, and c…",
+      "promptPreview": "You are a support specialist. In one sentence answer and say where in the product to look. Do not use any tools; answer from general knowledge. Keep it under 25 words.\nTicket T3: How do I export my invoices as CSV?",
+      "promptFramed": true,
+      "lastProgressAt": 1791523444943,
+      "tokens": 46926,
+      "toolCalls": 1,
+      "durationMs": 1934,
+      "resultPreview": "{\"outcome\":\"Open Settings or Billing, go to the Invoices section, and click Export, choosing CSV as the format.\"}"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 8,
+      "label": "T4 -> bug",
+      "phaseIndex": 3,
+      "phaseTitle": "Handle",
+      "agentId": "ac92941246f7a80ba",
+      "model": "claude-haiku-5-5",
+      "state": "done",
+      "startedAt": 1791523443993,
+      "queuedAt": 1791523439047,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Likely a hardcoded 20-item limit or batch bug in cart proce…",
+      "promptPreview": "You are a bug triage specialist. In one sentence give the likely cause and the next step. Do not use any tools; answer from general knowledge. Keep it under 25 words.\nTicket T4: Checkout returns HTTP 500 when the cart has more than 20 items.",
+      "promptFramed": true,
+      "lastProgressAt": 1791523446974,
+      "tokens": 46940,
+      "toolCalls": 1,
+      "durationMs": 2981,
+      "resultPreview": "{\"outcome\":\"Likely a hardcoded 20-item limit or batch bug in cart processing; next, reproduce with 21 items and check server logs for the stack trace.\"}"
+    }
+  ],
+  "totalTokens": 187846,
+  "totalToolCalls": 4
+}
