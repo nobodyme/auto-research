@@ -1,0 +1,353 @@
+{
+  "openpyxl": {
+    "load_time_ms": 24.229041067883372,
+    "metrics": {
+      "cell_value_accuracy": {
+        "total_cells_in_gt": 520,
+        "correct": 332,
+        "accuracy": 0.6384615384615384,
+        "missing_count": 0,
+        "mismatched_count": 188,
+        "mismatched_sample": [
+          {
+            "sheet": "Sales",
+            "cell": "F2",
+            "expected": 62.5,
+            "actual": "=D2*E2",
+            "is_formula": true
+          },
+          {
+            "sheet": "Sales",
+            "cell": "G2",
+            "expected": 35.0,
+            "actual": "=D2*7.0",
+            "is_formula": true
+          },
+          {
+            "sheet": "Sales",
+            "cell": "H2",
+            "expected": 27.5,
+            "actual": "=F2-G2",
+            "is_formula": true
+          },
+          {
+            "sheet": "Sales",
+            "cell": "I2",
+            "expected": 0.44,
+            "actual": "=IF(F2=0,0,H2/F2)",
+            "is_formula": true
+          },
+          {
+            "sheet": "Sales",
+            "cell": "F3",
+            "expected": 200.0,
+            "actual": "=D3*E3",
+            "is_formula": true
+          },
+          {
+            "sheet": "Sales",
+            "cell": "G3",
+            "expected": 112.0,
+            "actual": "=D3*14.0",
+            "is_formula": true
+          },
+          {
+            "sheet": "Sales",
+            "cell": "H3",
+            "expected": 88.0,
+            "actual": "=F3-G3",
+            "is_formula": true
+          },
+          {
+            "sheet": "Sales",
+            "cell": "I3",
+            "expected": 0.44,
+            "actual": "=IF(F3=0,0,H3/F3)",
+            "is_formula": true
+          },
+          {
+            "sheet": "Sales",
+            "cell": "F4",
+            "expected": 44.0,
+            "actual": "=D4*E4",
+            "is_formula": true
+          },
+          {
+            "sheet": "Sales",
+            "cell": "G4",
+            "expected": 27.5,
+            "actual": "=D4*2.5",
+            "is_formula": true
+          }
+        ]
+      },
+      "formula_recall": {
+        "formulas_in_gt": 188,
+        "formulas_extracted": 188,
+        "matched": 188,
+        "recall": 1.0
+      },
+      "merged_recall": {
+        "gt_count": 5,
+        "extracted_count": 5,
+        "matched": 5,
+        "recall": 1.0
+      },
+      "table_recall": {
+        "gt_count": 1,
+        "extracted_count": 1,
+        "matched": 1,
+        "recall": 1.0
+      },
+      "chart_recall": {
+        "gt_count": 6,
+        "extracted_count": 6,
+        "matched": 6,
+        "recall": 1.0
+      },
+      "hyperlink_recall": {
+        "gt_count": 3,
+        "extracted_count": 3,
+        "matched": 3,
+        "recall": 1.0
+      },
+      "comment_recall": {
+        "gt_count": 1,
+        "extracted_count": 1,
+        "matched": 1,
+        "recall": 1.0
+      },
+      "defined_names_recall": {
+        "gt_count": 1,
+        "extracted_count": 1,
+        "matched": 1,
+        "recall": 1.0
+      }
+    }
+  },
+  "openpyxl_dataonly": {
+    "load_time_ms": 23.177416995167732,
+    "metrics": {
+      "cell_value_accuracy": {
+        "total_cells_in_gt": 520,
+        "correct": 520,
+        "accuracy": 1.0,
+        "missing_count": 0,
+        "mismatched_count": 0,
+        "mismatched_sample": []
+      },
+      "formula_recall": {
+        "formulas_in_gt": 188,
+        "formulas_extracted": 0,
+        "matched": 0,
+        "recall": 0.0
+      },
+      "merged_recall": {
+        "gt_count": 5,
+        "extracted_count": 5,
+        "matched": 5,
+        "recall": 1.0
+      },
+      "table_recall": {
+        "gt_count": 1,
+        "extracted_count": 1,
+        "matched": 1,
+        "recall": 1.0
+      },
+      "chart_recall": {
+        "gt_count": 6,
+        "extracted_count": 6,
+        "matched": 6,
+        "recall": 1.0
+      },
+      "hyperlink_recall": {
+        "gt_count": 3,
+        "extracted_count": 3,
+        "matched": 3,
+        "recall": 1.0
+      },
+      "comment_recall": {
+        "gt_count": 1,
+        "extracted_count": 1,
+        "matched": 1,
+        "recall": 1.0
+      },
+      "defined_names_recall": {
+        "gt_count": 1,
+        "extracted_count": 1,
+        "matched": 1,
+        "recall": 1.0
+      }
+    }
+  },
+  "pandas": {
+    "load_time_ms": 33.715167082846165,
+    "metrics": {
+      "cell_value_accuracy": {
+        "total_cells_in_gt": 520,
+        "correct": 520,
+        "accuracy": 1.0,
+        "missing_count": 0,
+        "mismatched_count": 0,
+        "mismatched_sample": []
+      },
+      "formula_recall": {
+        "formulas_in_gt": 188,
+        "formulas_extracted": 0,
+        "matched": 0,
+        "recall": 0.0
+      },
+      "merged_recall": {
+        "gt_count": 5,
+        "extracted_count": 0,
+        "matched": 0,
+        "recall": 0.0
+      },
+      "table_recall": {
+        "gt_count": 1,
+        "extracted_count": 0,
+        "matched": 0,
+        "recall": 0.0
+      },
+      "chart_recall": {
+        "gt_count": 6,
+        "extracted_count": 0,
+        "matched": 0,
+        "recall": 0.0
+      },
+      "hyperlink_recall": {
+        "gt_count": 3,
+        "extracted_count": 0,
+        "matched": 0,
+        "recall": 0.0
+      },
+      "comment_recall": {
+        "gt_count": 1,
+        "extracted_count": 0,
+        "matched": 0,
+        "recall": 0.0
+      },
+      "defined_names_recall": {
+        "gt_count": 1,
+        "extracted_count": 0,
+        "matched": 0,
+        "recall": 0.0
+      }
+    }
+  },
+  "python-calamine": {
+    "load_time_ms": 1.7895419150590897,
+    "metrics": {
+      "cell_value_accuracy": {
+        "total_cells_in_gt": 520,
+        "correct": 520,
+        "accuracy": 1.0,
+        "missing_count": 0,
+        "mismatched_count": 0,
+        "mismatched_sample": []
+      },
+      "formula_recall": {
+        "formulas_in_gt": 188,
+        "formulas_extracted": 0,
+        "matched": 0,
+        "recall": 0.0
+      },
+      "merged_recall": {
+        "gt_count": 5,
+        "extracted_count": 0,
+        "matched": 0,
+        "recall": 0.0
+      },
+      "table_recall": {
+        "gt_count": 1,
+        "extracted_count": 0,
+        "matched": 0,
+        "recall": 0.0
+      },
+      "chart_recall": {
+        "gt_count": 6,
+        "extracted_count": 0,
+        "matched": 0,
+        "recall": 0.0
+      },
+      "hyperlink_recall": {
+        "gt_count": 3,
+        "extracted_count": 0,
+        "matched": 0,
+        "recall": 0.0
+      },
+      "comment_recall": {
+        "gt_count": 1,
+        "extracted_count": 0,
+        "matched": 0,
+        "recall": 0.0
+      },
+      "defined_names_recall": {
+        "gt_count": 1,
+        "extracted_count": 0,
+        "matched": 0,
+        "recall": 0.0
+      }
+    }
+  },
+  "pyexcel": {
+    "load_time_ms": 26.951083913445473,
+    "metrics": {
+      "cell_value_accuracy": {
+        "total_cells_in_gt": 520,
+        "correct": 520,
+        "accuracy": 1.0,
+        "missing_count": 0,
+        "mismatched_count": 0,
+        "mismatched_sample": []
+      },
+      "formula_recall": {
+        "formulas_in_gt": 188,
+        "formulas_extracted": 0,
+        "matched": 0,
+        "recall": 0.0
+      },
+      "merged_recall": {
+        "gt_count": 5,
+        "extracted_count": 0,
+        "matched": 0,
+        "recall": 0.0
+      },
+      "table_recall": {
+        "gt_count": 1,
+        "extracted_count": 0,
+        "matched": 0,
+        "recall": 0.0
+      },
+      "chart_recall": {
+        "gt_count": 6,
+        "extracted_count": 0,
+        "matched": 0,
+        "recall": 0.0
+      },
+      "hyperlink_recall": {
+        "gt_count": 3,
+        "extracted_count": 0,
+        "matched": 0,
+        "recall": 0.0
+      },
+      "comment_recall": {
+        "gt_count": 1,
+        "extracted_count": 0,
+        "matched": 0,
+        "recall": 0.0
+      },
+      "defined_names_recall": {
+        "gt_count": 1,
+        "extracted_count": 0,
+        "matched": 0,
+        "recall": 0.0
+      }
+    }
+  },
+  "xlrd": {
+    "load_time_ms": 0.8822910021990538,
+    "metrics": {},
+    "error": "XLRDError: Excel xlsx file; not supported"
+  }
+}
