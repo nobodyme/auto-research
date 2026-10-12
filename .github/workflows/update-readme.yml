@@ -31,6 +31,7 @@ jobs:
 
       - name: Run cogapp to update README
         env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           cog -r -P README.md

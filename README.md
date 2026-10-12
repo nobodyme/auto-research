@@ -9,9 +9,14 @@ import subprocess
 import pathlib
 from datetime import datetime, timezone
 
-# Model to use for generating summaries (OpenAI API via OPENAI_API_KEY;
-# GitHub Models, previously "github/gpt-4.1", has been retired)
-MODEL = "gpt-4.1"
+# Model to use for generating summaries: Anthropic if ANTHROPIC_API_KEY is set,
+# otherwise OpenAI via OPENAI_API_KEY (GitHub Models has been retired)
+if os.environ.get("ANTHROPIC_API_KEY"):
+    MODEL = "anthropic/claude-opus-5-5"
+elif os.environ.get("OPENAI_API_KEY"):
+    MODEL = "gpt-4.1"
+else:
+    MODEL = None
 
 # Get all subdirectories with their first commit dates
 research_dir = pathlib.Path.cwd()
@@ -88,6 +93,8 @@ for dirname, commit_date in subdirs_with_dates:
                 print("*No description available.*")
     elif readme_path.exists():
         # Generate new summary using llm command
+        if MODEL is None:
+            raise RuntimeError(f"No summary for {dirname}: set ANTHROPIC_API_KEY or OPENAI_API_KEY")
         prompt = """Summarize this research project concisely. Write just 1 paragraph (3-5 sentences) followed by an optional short bullet list if there are key findings. Vary your opening - don't start with "This report" or "This research". Include 1-2 links to key tools/projects. Be specific but brief. No emoji."""
         result = subprocess.run(
             ['llm', '-m', MODEL, '-s', prompt],
