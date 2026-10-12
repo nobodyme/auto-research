@@ -9,8 +9,9 @@ import subprocess
 import pathlib
 from datetime import datetime, timezone
 
-# Model to use for generating summaries
-MODEL = "github/gpt-4.1"
+# Model to use for generating summaries (OpenAI API via OPENAI_API_KEY;
+# GitHub Models, previously "github/gpt-4.1", has been retired)
+MODEL = "gpt-4.1"
 
 # Get all subdirectories with their first commit dates
 research_dir = pathlib.Path.cwd()
@@ -156,7 +157,36 @@ for dirname, _ in subdirs_with_dates:
             readme_path.write_text('\n'.join(new_lines))
 
 ]]]-->
-## 4 research projects
+## 9 research projects
+
+### [deepagents-dynamic-subagents-vs-claude-workflows](https://github.com/nobodyme/auto-research/tree/main/deepagents-dynamic-subagents-vs-claude-workflows) (2026-10-09)
+
+Testing the claim that LangChain deepagents' *dynamic subagents* is the same thing as Claude Code Workflows, this project found it only partly true. In both systems the model writes a small JavaScript program that fans out, chains and routes subagents, and the two publish nearly identical pattern catalogues. They differ in how they run: [deepagents dynamic subagents](https://docs.langchain.com/oss/python/deepagents/dynamic-subagents) re-authors the script on every request and runs it synchronously inside the agent's turn via a QuickJS `eval`, while Claude Code Workflows runs a journaled, resumable script as a background job. The comparison rests on 11 deterministic-fake runtime experiments, a real Sonnet + Haiku ticket-triage run, and the equivalent Claude Workflow including an edited-script resume.
+
+- deepagents caps concurrency at 32 `task()` calls per REPL and its 5 s `eval` timeout counts only JS CPU time, not time spent awaiting subagents.
+- One failing `task()` inside `Promise.all` errors the whole `eval`; a typo'd subagent type and an ignored `responseSchema` fail silently instead of throwing.
+- Claude Workflows validated every structured output, turned a throwing agent into a reported `null`, and on resume replayed unchanged stages from cache, halving tokens.
+- Only control flow is deterministic in either system; subagent outputs are not.
+
+### [excel-extraction](https://github.com/nobodyme/auto-research/tree/main/excel-extraction) (2026-07-19)
+
+Five Python Excel libraries were benchmarked against a deliberately complex `.xlsx` workbook (5 sheets, 188 formulas, 6 charts, a structured table, merges, hyperlinks, a comment and a named range), scoring per-feature recall and load time against generated ground truth. [openpyxl](https://openpyxl.readthedocs.io/) is the only library that recovers every structural feature, including formula text, charts and defined names. Use `data_only=True` to get computed values instead of formula strings. [python-calamine](https://github.com/dimastbk/python-calamine), a Rust-backed reader, matched value accuracy at 12-15x the speed but exposes nothing beyond cell values. pandas and pyexcel also return values only, and `xlrd` 2.x no longer reads `.xlsx` at all.
+
+- openpyxl: 100% recall on formulas, charts, tables, merges, hyperlinks, comments and defined names (~24 ms).
+- python-calamine: 1.8 ms load, full value accuracy, zero structural features.
+- The benchmark includes 38 pytest tests and chart outputs for speed versus coverage.
+
+### [explaining-cog](https://github.com/nobodyme/auto-research/tree/main/explaining-cog) (2026-07-18)
+
+A short explainer of [Cog](https://github.com/nedbat/cog), Ned Batchelder's tool for embedding Python inside Markdown or other files so a document's visible content is computed from its source. The note covers how code sits between HTML-comment markers and its printed output is spliced back into the file, the three flags that cover most workflows (`-r` to re-render in place, `-d` to delete output, `--check` to fail CI when output is stale), and why a single source of truth beats hand-maintained docs. It also walks through how this repository's root README is itself a Cog block. That block lists each project folder by first-commit date, reuses a cached `_summary.md` or generates one with the [`llm`](https://llm.datasette.io/) CLI, and stamps an AI-generated disclaimer into each project README. It closes by noting when a fuller doc system like MkDocs or Sphinx is the better choice.
+
+### [pdf-extraction-research](https://github.com/nobodyme/auto-research/tree/main/pdf-extraction-research) (2026-02-27)
+
+Four Python text extractors (PyMuPDF, pdfplumber, pypdf, pdfminer.six) and four table extractors (including camelot lattice and stream) were benchmarked test-first across 5 synthetic PDFs with ground truth and 4 real arXiv papers, backed by 62 pytest checks. On digital PDFs all four text extractors scored identically (0.967 overall, 95% keyword recall, 97.2% number preservation), so speed is the deciding factor. [PyMuPDF](https://pymupdf.readthedocs.io/) was 23x faster than pdfplumber. For tables, PyMuPDF and pdfplumber tied on accuracy, while camelot was slower, over-split tables, and in lattice mode skipped colour-shaded header rows, a defect the tests caught. For scanned or layout-heavy documents the report points to AI-based tools such as [Docling](https://github.com/docling-project/docling) and MinerU, and summarises public benchmarks like OmniDocBench and DP-Bench.
+
+- Text: PyMuPDF 0.11 s average versus pdfplumber 2.48 s, with identical accuracy.
+- Tables: PyMuPDF 0.919 score and 100% detection at 1.48 s; camelot-lattice 0.882 at 7.58 s.
+- Recommendation: PyMuPDF (or `pymupdf4llm`) for LLM preprocessing pipelines.
 
 ### [claude-code-research](https://github.com/nobodyme/auto-research/tree/main/claude-code-research) (2026-01-14)
 
@@ -176,6 +206,10 @@ Leveraging LangGraph and the official AWS Model Context Protocol (MCP) servers, 
 - The agent reliably identifies issues such as ECS resource misconfigurations and DynamoDB timeouts, providing targeted recommendations.
 - Read-only architecture supports safe operation even in production AWS environments.
 - Comprehensive automated tests ensure stability across log analysis, compute, and database layers.
+
+### [fine-tune-rf-detr-using-sam3](https://github.com/nobodyme/auto-research/tree/main/fine-tune-rf-detr-using-sam3) (2026-01-05)
+
+A command-line tool that runs [RF-DETR](https://github.com/roboflow/rf-detr) object detection over a folder of images and can fine-tune the detector from a plain-text prompt. In detection mode it loads the Nano, Small or Medium variant, filters by confidence, and writes annotated images plus a JSON file of boxes. Pass `--prompt` (for example "detect yellow school buses") and it switches to fine-tuning mode. [SAM3](https://github.com/facebookresearch/sam3) labels the matching objects, the detections become COCO-format annotations, and RF-DETR is trained on them with configurable epochs, batch size and learning rate, after which the fine-tuned model runs detection and can be saved. The CLI, detector, SAM3 integration and fine-tuning pipeline each have their own pytest module.
 
 ### [comparison-of-object-detection-models](https://github.com/nobodyme/auto-research/tree/main/comparison-of-object-detection-models) (2026-01-05)
 

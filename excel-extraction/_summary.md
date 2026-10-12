@@ -1,0 +1,5 @@
+Five Python Excel libraries were benchmarked against a deliberately complex `.xlsx` workbook (5 sheets, 188 formulas, 6 charts, a structured table, merges, hyperlinks, a comment and a named range), scoring per-feature recall and load time against generated ground truth. [openpyxl](https://openpyxl.readthedocs.io/) is the only library that recovers every structural feature, including formula text, charts and defined names. Use `data_only=True` to get computed values instead of formula strings. [python-calamine](https://github.com/dimastbk/python-calamine), a Rust-backed reader, matched value accuracy at 12-15x the speed but exposes nothing beyond cell values. pandas and pyexcel also return values only, and `xlrd` 2.x no longer reads `.xlsx` at all.
+
+- openpyxl: 100% recall on formulas, charts, tables, merges, hyperlinks, comments and defined names (~24 ms).
+- python-calamine: 1.8 ms load, full value accuracy, zero structural features.
+- The benchmark includes 38 pytest tests and chart outputs for speed versus coverage.

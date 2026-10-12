@@ -1,0 +1,5 @@
+Four Python text extractors (PyMuPDF, pdfplumber, pypdf, pdfminer.six) and four table extractors (including camelot lattice and stream) were benchmarked test-first across 5 synthetic PDFs with ground truth and 4 real arXiv papers, backed by 62 pytest checks. On digital PDFs all four text extractors scored identically (0.967 overall, 95% keyword recall, 97.2% number preservation), so speed is the deciding factor. [PyMuPDF](https://pymupdf.readthedocs.io/) was 23x faster than pdfplumber. For tables, PyMuPDF and pdfplumber tied on accuracy, while camelot was slower, over-split tables, and in lattice mode skipped colour-shaded header rows, a defect the tests caught. For scanned or layout-heavy documents the report points to AI-based tools such as [Docling](https://github.com/docling-project/docling) and MinerU, and summarises public benchmarks like OmniDocBench and DP-Bench.
+
+- Text: PyMuPDF 0.11 s average versus pdfplumber 2.48 s, with identical accuracy.
+- Tables: PyMuPDF 0.919 score and 100% detection at 1.48 s; camelot-lattice 0.882 at 7.58 s.
+- Recommendation: PyMuPDF (or `pymupdf4llm`) for LLM preprocessing pipelines.

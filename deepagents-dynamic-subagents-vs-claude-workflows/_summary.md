@@ -1,0 +1,6 @@
+Testing the claim that LangChain deepagents' *dynamic subagents* is the same thing as Claude Code Workflows, this project found it only partly true. In both systems the model writes a small JavaScript program that fans out, chains and routes subagents, and the two publish nearly identical pattern catalogues. They differ in how they run: [deepagents dynamic subagents](https://docs.langchain.com/oss/python/deepagents/dynamic-subagents) re-authors the script on every request and runs it synchronously inside the agent's turn via a QuickJS `eval`, while Claude Code Workflows runs a journaled, resumable script as a background job. The comparison rests on 11 deterministic-fake runtime experiments, a real Sonnet + Haiku ticket-triage run, and the equivalent Claude Workflow including an edited-script resume.
+
+- deepagents caps concurrency at 32 `task()` calls per REPL and its 5 s `eval` timeout counts only JS CPU time, not time spent awaiting subagents.
+- One failing `task()` inside `Promise.all` errors the whole `eval`; a typo'd subagent type and an ignored `responseSchema` fail silently instead of throwing.
+- Claude Workflows validated every structured output, turned a throwing agent into a reported `null`, and on resume replayed unchanged stages from cache, halving tokens.
+- Only control flow is deterministic in either system; subagent outputs are not.
