@@ -1,0 +1,25 @@
+{
+  "filename": "text_heavy.pdf",
+  "description": "Text-heavy academic document with 5 sections",
+  "sections": [
+    "1. What are Large Language Models?",
+    "2. Training Methodology",
+    "3. Capabilities and Limitations",
+    "4. Context Windows and Memory",
+    "5. Practical Applications in Enterprise"
+  ],
+  "key_phrases": [
+    "Large Language Models",
+    "transformer architectures",
+    "Reinforcement Learning from Human Feedback",
+    "hallucination",
+    "context window",
+    "retrieval-augmented generation",
+    "100,000 to 1,000,000 tokens",
+    "40-60%",
+    "55% faster"
+  ],
+  "tables": [],
+  "images": 0,
+  "word_count_approx": 550
+}

@@ -1,0 +1,43 @@
+{
+  "filename": "mixed_content.pdf",
+  "description": "Academic paper with mixed content: text, tables, figure caption",
+  "tables": [
+    {
+      "id": "figure_table",
+      "rows": 2,
+      "cols": 11,
+      "content": "Publication counts by year 2015-2024"
+    },
+    {
+      "id": "performance_table",
+      "rows": 7,
+      "cols": 6,
+      "header": [
+        "Method",
+        "Accuracy",
+        "AUC-ROC",
+        "Sensitivity",
+        "Specificity",
+        "F1 Score"
+      ],
+      "best_method": "Vision Transformer",
+      "best_accuracy": "95.1%",
+      "best_auc": "0.98"
+    }
+  ],
+  "sections": [
+    "Abstract",
+    "1. Introduction",
+    "2. Performance Comparison",
+    "3. Conclusion",
+    "References"
+  ],
+  "key_facts": {
+    "avg_auc": "0.91",
+    "improvement": "12.3 percentage points",
+    "studies_analyzed": "127",
+    "best_accuracy": "95.1%"
+  },
+  "images": 0,
+  "references": 3
+}

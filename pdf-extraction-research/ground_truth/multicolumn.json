@@ -1,0 +1,30 @@
+{
+  "filename": "multicolumn.pdf",
+  "description": "Magazine-style with two-column text layout and stats table",
+  "layout": "two-column",
+  "tables": [
+    {
+      "rows": 7,
+      "cols": 5,
+      "header": [
+        "Energy Source",
+        "Capacity (GW)",
+        "Growth YoY",
+        "LCOE ($/kWh)",
+        "Jobs Created"
+      ],
+      "key_values": {
+        "Solar PV capacity": "1,419 GW",
+        "Total renewable": "3,790 GW",
+        "Solar LCOE": "$0.033/kWh"
+      }
+    }
+  ],
+  "key_facts": {
+    "total_capacity_gw": "2,500+ TW equivalent",
+    "investment_usd": "$500 billion",
+    "battery_storage_gwh": "85 GWh",
+    "solar_lcoe": "$0.033/kWh"
+  },
+  "images": 0
+}
