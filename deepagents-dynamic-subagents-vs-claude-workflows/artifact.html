@@ -1,0 +1,281 @@
+<title>deepagents Dynamic Subagents</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one reading column (~70ch) with full-width figures and tables; quiet slate paper, teal = code-driven path, amber = gotcha */
+:root {
+  --bg: #f4f6f8;
+  --surface: #ffffff;
+  --fg: #17212b;
+  --muted: #566573;
+  --line: #d5dde4;
+  --accent: #0d6b75;
+  --accent-soft: #dcefef;
+  --warn: #9a5a00;
+  --warn-soft: #fbefdc;
+  --code-bg: #eaeff3;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11171d; --surface: #182129; --fg: #e3e9ee; --muted: #9aa8b4; --line: #2b3742;
+    --accent: #5cc3cc; --accent-soft: #163338; --warn: #f0b45c; --warn-soft: #3a2a12; --code-bg: #1d2832;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #11171d; --surface: #182129; --fg: #e3e9ee; --muted: #9aa8b4; --line: #2b3742;
+  --accent: #5cc3cc; --accent-soft: #163338; --warn: #f0b45c; --warn-soft: #3a2a12; --code-bg: #1d2832;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
+.wrap { max-width: 860px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 72px; display: flex; flex-direction: column; gap: 56px; }
+.col { max-width: 68ch; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2rem, 5vw, 2.9rem); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: 1.6rem; font-weight: 700; }
+h3 { font-size: 1.1rem; font-weight: 700; }
+p { margin: 0; }
+section { display: flex; flex-direction: column; gap: 16px; }
+.eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.lede { font-size: 1.15rem; color: var(--muted); }
+code { font-family: var(--font-mono); font-size: 0.88em; background: var(--code-bg); padding: 0.1em 0.35em; border-radius: 4px; }
+pre { margin: 0; background: var(--code-bg); border-radius: 8px; padding: 16px 18px; overflow-x: auto; font-family: var(--font-mono); font-size: 0.84rem; line-height: 1.55; }
+pre code { background: none; padding: 0; font-size: inherit; }
+.c { color: var(--muted); }
+.k { color: var(--accent); font-weight: 600; }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.verdict { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 8px; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; }
+.verdict strong { font-family: var(--font-display); font-size: 1.25rem; }
+
+figure { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+figcaption { font-size: 0.85rem; color: var(--muted); }
+.diagram { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px; overflow-x: auto; }
+.diagram svg { display: block; width: 100%; min-width: 640px; height: auto; }
+.diagram text { font-family: var(--font-body); fill: var(--fg); }
+.diagram .mono { font-family: var(--font-mono); }
+.diagram .mut { fill: var(--muted); }
+.diagram .box { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+.diagram .box-acc { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+.diagram .arrow { stroke: var(--muted); stroke-width: 1.5; fill: none; }
+.diagram .arrow-acc { stroke: var(--accent); stroke-width: 1.5; fill: none; }
+.diagram .head { fill: var(--muted); }
+.diagram .head-acc { fill: var(--accent); }
+
+.patterns { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+.pattern { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.pattern p { font-size: 0.92rem; color: var(--muted); }
+.shape { font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent); }
+
+.findings { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--line); }
+.finding { display: grid; grid-template-columns: 7.5rem 1fr; gap: 16px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+.finding > div { min-width: 0; }
+.tag { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; align-self: start; justify-self: start; white-space: nowrap; }
+.tag.ok { background: var(--accent-soft); color: var(--accent); }
+.tag.gotcha { background: var(--warn-soft); color: var(--warn); }
+.finding h3 { font-family: var(--font-body); font-size: 1rem; font-weight: 600; margin-bottom: 2px; }
+.finding p { font-size: 0.93rem; color: var(--muted); }
+.num { font-variant-numeric: tabular-nums; font-family: var(--font-mono); font-size: 0.9em; color: var(--fg); }
+
+.table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 0.9rem; }
+th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+thead th { font-family: var(--font-mono); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 600; }
+tbody th { font-weight: 600; width: 22%; }
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: none; }
+.same { color: var(--accent); font-weight: 600; }
+
+ul.check { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+ul.check li { padding-left: 28px; position: relative; }
+ul.check li::before { content: ""; position: absolute; left: 4px; top: 0.45em; width: 12px; height: 12px; border: 2px solid var(--accent); border-radius: 3px; }
+footer { font-size: 0.85rem; color: var(--muted); display: flex; flex-direction: column; gap: 6px; border-top: 1px solid var(--line); padding-top: 20px; }
+
+@media (max-width: 560px) {
+  .wrap { padding-inline: 16px; gap: 44px; }
+  .finding { grid-template-columns: 1fr; gap: 6px; }
+}
+</style>
+
+<div class="wrap">
+
+<header style="display:flex;flex-direction:column;gap:14px">
+  <span class="eyebrow">deepagents · interpreter runtime (beta)</span>
+  <h1>Dynamic subagents</h1>
+  <p class="lede col">You know the <code>task</code> tool: the model delegates to a subagent one tool call at a time. Dynamic subagents let the model write a short JavaScript program that dispatches subagents in loops, branches and parallel batches. This page explains the feature, where it pays off, what broke when I tested it, and whether it's really "the same as Claude Workflows".</p>
+</header>
+
+<div class="verdict col">
+  <span class="eyebrow">Claim checked</span>
+  <strong>"Dynamic subagents are like Claude's workflows: deterministic workflows chained together." Partly true.</strong>
+  <p>The core idea is the same. A model writes JS, and the code (not the model) fans out and chains subagents. In both systems only the control flow is deterministic; what the subagents return is not. In deepagents the coordinator rewrites the script on every request, and the two runtimes handle failures, schemas, resume, reuse and opt-in differently. See the <a href="#compare">comparison</a>.</p>
+</div>
+
+<section>
+  <span class="eyebrow">The idea</span>
+  <h2>From the task tool to <code>task()</code></h2>
+  <p class="col">With plain subagents, every delegation is a model turn. The model can emit a batch of <code>task</code> calls at once, but that batch is fixed when emitted: nothing can loop, branch on a result, or retry without another model turn, and every result lands in the model's context. Dynamic subagents move that orchestration into code that runs inside one <code>eval</code> tool call.</p>
+  <figure>
+    <div class="diagram" role="img" aria-label="Two flows. Top: the model calls the task tool, gets a result, thinks, and calls task again, once per item. Bottom: the model calls eval once with a script; the script dispatches many task calls in parallel, combines them in code, and returns one compact result.">
+      <svg viewBox="0 0 760 330" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="head"/></marker>
+          <marker id="ha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="head-acc"/></marker>
+        </defs>
+        <text x="12" y="22" font-size="13" font-weight="600">Plain subagents: one model turn per delegation</text>
+        <rect x="12" y="38" width="110" height="44" rx="6" class="box"/><text x="67" y="65" font-size="13" text-anchor="middle">model</text>
+        <rect x="170" y="38" width="130" height="44" rx="6" class="box"/><text x="235" y="58" font-size="12" text-anchor="middle" class="mono">task</text><text x="235" y="74" font-size="11" text-anchor="middle" class="mut">ticket 1</text>
+        <rect x="348" y="38" width="110" height="44" rx="6" class="box"/><text x="403" y="65" font-size="13" text-anchor="middle">model</text>
+        <rect x="506" y="38" width="130" height="44" rx="6" class="box"/><text x="571" y="58" font-size="12" text-anchor="middle" class="mono">task</text><text x="571" y="74" font-size="11" text-anchor="middle" class="mut">ticket 2</text>
+        <text x="690" y="65" font-size="18" class="mut">…</text>
+        <path d="M122 60 H166" class="arrow" marker-end="url(#h)"/>
+        <path d="M300 60 H344" class="arrow" marker-end="url(#h)"/>
+        <path d="M458 60 H502" class="arrow" marker-end="url(#h)"/>
+        <path d="M636 60 H676" class="arrow" marker-end="url(#h)"/>
+        <text x="12" y="108" font-size="11.5" class="mut">Each result returns to the model's context. The model decides each next step, so long lists tend to get sampled, not covered.</text>
+
+        <text x="12" y="152" font-size="13" font-weight="600">Dynamic subagents: one eval, the script does the dispatching</text>
+        <rect x="12" y="200" width="110" height="44" rx="6" class="box"/><text x="67" y="227" font-size="13" text-anchor="middle">model</text>
+        <rect x="170" y="168" width="200" height="108" rx="6" class="box-acc"/>
+        <text x="182" y="190" font-size="12" class="mono" font-weight="600">eval(script)</text>
+        <text x="182" y="212" font-size="11" class="mono mut">for each ticket:</text>
+        <text x="182" y="230" font-size="11" class="mono mut">  label = task(classify)</text>
+        <text x="182" y="248" font-size="11" class="mono mut">  task(route[label])</text>
+        <text x="182" y="266" font-size="11" class="mono mut">combine in JS</text>
+        <rect x="430" y="168" width="120" height="30" rx="6" class="box"/><text x="490" y="188" font-size="11.5" text-anchor="middle" class="mono">task() #1</text>
+        <rect x="430" y="207" width="120" height="30" rx="6" class="box"/><text x="490" y="227" font-size="11.5" text-anchor="middle" class="mono">task() #2</text>
+        <rect x="430" y="246" width="120" height="30" rx="6" class="box"/><text x="490" y="266" font-size="11.5" text-anchor="middle" class="mono">task() #N</text>
+        <rect x="610" y="200" width="138" height="44" rx="6" class="box"/><text x="679" y="219" font-size="12" text-anchor="middle">one compact</text><text x="679" y="235" font-size="12" text-anchor="middle">result → model</text>
+        <path d="M122 222 H166" class="arrow" marker-end="url(#h)"/>
+        <path d="M370 200 L426 183" class="arrow-acc" marker-end="url(#ha)"/>
+        <path d="M370 222 H426" class="arrow-acc" marker-end="url(#ha)"/>
+        <path d="M370 244 L426 261" class="arrow-acc" marker-end="url(#ha)"/>
+        <path d="M550 183 L606 212" class="arrow-acc" marker-end="url(#ha)"/>
+        <path d="M550 222 H606" class="arrow-acc" marker-end="url(#ha)"/>
+        <path d="M550 261 L606 232" class="arrow-acc" marker-end="url(#ha)"/>
+        <text x="12" y="306" font-size="11.5" class="mut">Up to 32 task() calls run at once. Intermediate results stay in JS variables and only the script's final expression goes back to the model.</text>
+      </svg>
+    </div>
+    <figcaption>The teal path runs as code inside one tool call. The model only sees what the script returns.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <span class="eyebrow">Setup</span>
+  <h2>Two ingredients: subagents and an interpreter</h2>
+  <p class="col">Add <code>CodeInterpreterMiddleware</code> from <code>langchain-quickjs</code>. It gives the agent an <code>eval</code> tool backed by a QuickJS sandbox (no filesystem, network or clock). Because the agent has subagents, the sandbox also gets a <code>task()</code> global. Nothing else changes in your <code>create_deep_agent</code> call.</p>
+<pre><code><span class="c"># pip install "deepagents[quickjs]"</span>
+<span class="k">from</span> deepagents <span class="k">import</span> create_deep_agent
+<span class="k">from</span> langchain_quickjs <span class="k">import</span> CodeInterpreterMiddleware
+
+agent = create_deep_agent(
+    model=<span class="k">"anthropic:claude-sonnet-5"</span>,
+    subagents=[
+        {<span class="k">"name"</span>: <span class="k">"bug-fixer"</span>,       <span class="k">"description"</span>: <span class="k">"Investigates bug reports"</span>,      <span class="k">"system_prompt"</span>: ...},
+        {<span class="k">"name"</span>: <span class="k">"feature-analyst"</span>, <span class="k">"description"</span>: <span class="k">"Rates feature effort and impact"</span>, <span class="k">"system_prompt"</span>: ...},
+        {<span class="k">"name"</span>: <span class="k">"support-agent"</span>,   <span class="k">"description"</span>: <span class="k">"Answers how-to questions"</span>,       <span class="k">"system_prompt"</span>: ...},
+    ],
+    middleware=[CodeInterpreterMiddleware()],   <span class="c"># task() is on by default when subagents exist</span>
+)
+agent.invoke({<span class="k">"messages"</span>: [{<span class="k">"role"</span>: <span class="k">"user"</span>,
+    <span class="k">"content"</span>: <span class="k">"Run a workflow that triages these tickets: ..."</span>}]})</code></pre>
+  <p class="col">You don't write the orchestration; the coordinator does. Below is the script my Sonnet coordinator actually wrote for a 6-ticket triage (trimmed). It classifies every ticket in parallel, then routes each one to a specialist by its label.</p>
+<pre><code><span class="k">const</span> specialist = { bug: <span class="k">"bug-fixer"</span>, feature: <span class="k">"feature-analyst"</span>, question: <span class="k">"support-agent"</span> };
+
+<span class="k">const</span> cls = <span class="k">await</span> Promise.all(tickets.map(<span class="k">async</span> ([id, text]) =&gt; {
+  <span class="k">const</span> r = <span class="k">await</span> task({
+    description: <span class="k">"Classify this support ticket as exactly one of: bug, feature, question.\nTicket: "</span> + text,
+    subagentType: <span class="k">"general-purpose"</span>,
+    responseSchema: { type: <span class="k">"object"</span>, properties: { category: { type: <span class="k">"string"</span>, enum: [<span class="k">"bug"</span>, <span class="k">"feature"</span>, <span class="k">"question"</span>] } } },
+  });
+  <span class="k">return</span> { id, text, category: r.category };
+}));
+
+<span class="k">const</span> out = <span class="k">await</span> Promise.all(cls.map(t =&gt;
+  task({ description: <span class="k">"Handle "</span> + t.id + <span class="k">": "</span> + t.text, subagentType: specialist[t.category] })));
+out.join(<span class="k">"\n"</span>);   <span class="c">// last expression = what the model sees</span></code></pre>
+  <p class="col"><code>task()</code> takes <code>description</code>, <code>subagentType</code> (a name you registered) and an optional <code>responseSchema</code>. Each call runs that subagent's full agent loop and resolves to its final answer.</p>
+</section>
+
+<section>
+  <span class="eyebrow">Where it's useful</span>
+  <h2>Shapes of work that suit it</h2>
+  <p class="col">The coordinator picks a shape from the task; none of this is configuration. The docs list these patterns, and I tested each shape with scripted runs.</p>
+  <div class="patterns">
+    <div class="pattern"><span class="shape">items → N workers → merge</span><h3>Fan-out and synthesize</h3><p>Review every file in a directory, every log, every service. Code covers all of them; a model choosing calls tends to sample.</p></div>
+    <div class="pattern"><span class="shape">classify → route by label</span><h3>Classify and act</h3><p>Ticket triage, error buckets, feedback. Send each item to the specialist that fits its label.</p></div>
+    <div class="pattern"><span class="shape">find → verify × k → vote</span><h3>Adversarial verification</h3><p>Security or compliance findings where a false positive is costly. Keep only the claims that independent verifiers confirm.</p></div>
+    <div class="pattern"><span class="shape">N drafts → score → best</span><h3>Generate and filter / tournament</h3><p>Architecture options, rewrites. Compare candidates in code or with a judge subagent, bracket by bracket.</p></div>
+    <div class="pattern"><span class="shape">while (new results)</span><h3>Loop until done</h3><p>Dead-code sweeps, dependency audits: anything where you don't know the size up front. Dedupe in JS and stop when a round finds nothing new.</p></div>
+    <div class="pattern"><span class="shape">variables persist</span><h3>Multi-turn working sets</h3><p>With <code>mode="thread"</code>, results from turn 1's workflow are still in scope in turn 2, so the agent can refine without re-running.</p></div>
+  </div>
+  <p class="col">Skip it for one or two delegations; a plain <code>task</code> call is simpler. Saying "workflow" in the prompt nudges the coordinator toward this path. In my runs it reached for <code>eval</code> even without that word, but then classified the tickets itself and fanned out only once.</p>
+</section>
+
+<section>
+  <span class="eyebrow">Tested, deepagents 0.7.23 · langchain-quickjs 0.3.8</span>
+  <h2>What I saw when running it</h2>
+  <p class="col">Mechanics were measured with scripted fake models (fixed delays, so timings are exact). Model behaviour was measured with real Claude models: Sonnet as coordinator and Haiku as subagents.</p>
+  <div class="findings">
+    <div class="finding"><span class="tag ok">works</span><div><h3>Parallelism is real, and capped at 32</h3><p>8 one-second subagents finished in <span class="num">1.01 s</span>. 40 of them peaked at <span class="num">32</span> concurrent and took two waves. Results come back in input order.</p></div></div>
+    <div class="finding"><span class="tag ok">works</span><div><h3>The 5 s timeout only counts JS CPU time</h3><p>A busy loop is killed at 5 s. Eight sequential one-second subagents (<span class="num">9 s</span> total) ran fine, because waiting on subagents doesn't count.</p></div></div>
+    <div class="finding"><span class="tag ok">works</span><div><h3>Same script, same dispatches</h3><p>The classify→route script run 3 times gave identical results and identical sets of dispatches. Only the start order varied.</p></div></div>
+    <div class="finding"><span class="tag ok">works</span><div><h3>The coordinator repairs its own workflow</h3><p>When stage 2 came back empty, the coordinator wrote a second <code>eval</code> that reused the <code>cls</code> variable still in the REPL and re-ran only stage 2.</p></div></div>
+    <div class="finding"><span class="tag ok">works</span><div><h3>Interrupts resume without redoing finished work</h3><p>One of 4 subagents called a human-in-the-loop <code>interrupt()</code>. After <code>Command(resume=…)</code> only that subagent continued; the 3 finished siblings were not re-run. This needs a checkpointer. Siblings still running when the interrupt landed do re-run.</p></div></div>
+    <div class="finding"><span class="tag gotcha">gotcha</span><div><h3>One failure discards the whole batch</h3><p>A throwing <code>task()</code> inside <code>Promise.all</code> turns the entire <code>eval</code> into an error, even though the siblings finished and their results are thrown away. <code>Promise.allSettled</code> keeps partial results, but the error text becomes <code>HostError: Host function failed</code>.</p></div></div>
+    <div class="finding"><span class="tag gotcha">gotcha</span><div><h3>A typo in subagentType doesn't throw</h3><p><code>task()</code> resolves to the string "We cannot invoke subagent … does not exist", which then flows on as if it were a real answer.</p></div></div>
+    <div class="finding"><span class="tag gotcha">gotcha</span><div><h3>responseSchema is a request, not a guarantee</h3><p>If the subagent ends without structured output, <code>task()</code> returns its plain text and <code>r.outcome</code> is silently <code>undefined</code>. This is what emptied stage 2 in the real run.</p></div></div>
+    <div class="finding"><span class="tag gotcha">gotcha</span><div><h3>Approvals don't apply per dispatch</h3><p><code>task()</code> runs inside an already-approved <code>eval</code>, so the parent's <code>interrupt_on</code> doesn't fire for each subagent. Gate <code>eval</code> itself if you need sign-off.</p></div></div>
+    <div class="finding"><span class="tag gotcha">gotcha</span><div><h3>The script differs every run</h3><p>The same prompt twice produced the same overall shape with different code. Without the word "workflow", the coordinator produced a different plan (1 stage, 13 dispatches instead of 18). The structure is chosen at run time; nothing is a fixed pipeline.</p></div></div>
+  </div>
+</section>
+
+<section id="compare">
+  <span class="eyebrow">The claim</span>
+  <h2>Is it the same as Claude Code Workflows?</h2>
+  <p class="col">I ran the same triage as a Claude Code Workflow: 4 tickets, classify then route, 8 Haiku agents. Same family, different runtimes. Claude's script runs as a background job with a journal; deepagents' script runs inside one tool call of the agent's loop.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>deepagents dynamic subagents</th><th>Claude Code Workflow</th></tr></thead>
+      <tbody>
+        <tr><th>Core idea</th><td colspan="2" class="same">Same: a model writes JS, and the code fans out, chains and combines subagents. Same pattern list, and "workflow" is the trigger word in both.</td></tr>
+        <tr><th>Where the script runs</th><td>Inside an <code>eval</code> tool call, during the coordinator's turn. The model waits, sees the result and can write another script.</td><td>As a background job. The main agent gets a notification when it finishes.</td></tr>
+        <tr><th>What it can dispatch</th><td>Only subagent types you registered in <code>create_deep_agent</code></td><td>Any prompt via <code>agent()</code>, with per-call model, effort and git-worktree isolation</td></tr>
+        <tr><th>Building blocks</th><td>Plain JS: <code>Promise.all</code>, loops</td><td><code>parallel()</code>, <code>pipeline()</code> (no barrier between stages), <code>phase</code>, <code>log</code>, <code>budget</code>, nested <code>workflow()</code></td></tr>
+        <tr><th>One agent fails</th><td>The whole <code>Promise.all</code> rejects</td><td>That item becomes <code>null</code> and is reported; the rest continue (tested)</td></tr>
+        <tr><th>Structured output</th><td>Best-effort, with a silent text fallback</td><td>Validated; the agent retries until it matches (tested)</td></tr>
+        <tr><th>Resume</th><td>Through the LangGraph checkpointer. Interrupt and resume skips finished subagents.</td><td>Journal plus <code>resumeFromRunId</code>. After I edited one stage, the unchanged stage replayed from cache (tested).</td></tr>
+        <tr><th>Determinism rules</th><td>Sandbox has no clock, so none are needed</td><td><code>Date.now()</code> and <code>Math.random()</code> are rejected before the run starts (tested)</td></tr>
+        <tr><th>Reuse</th><td>None built in. The script lives in one tool call.</td><td>Save as a named workflow, call with <code>args</code></td></tr>
+        <tr><th>Limits</th><td>32 concurrent, 5 s CPU per eval, 64 MB heap</td><td>min(16, CPUs−2) concurrent, 1000 agents per run</td></tr>
+        <tr><th>Who turns it on</th><td>The coordinator model decides</td><td>The user must explicitly ask</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="col">So "similar" is fair for the idea and the patterns. "Deterministic workflows chained together" is misleading for both: the control flow is code, but the subagents are still models. In deepagents the code itself is new on every request.</p>
+</section>
+
+<section>
+  <span class="eyebrow">If you adopt it</span>
+  <h2>Guardrails I'd add</h2>
+  <ul class="check col">
+    <li>Tell the coordinator (in your system prompt) to use <code>Promise.allSettled</code> or a per-call <code>.catch</code>, so one bad item doesn't discard a 30-item batch.</li>
+    <li>Check structured fields in JS before using them. Treat a string result from a schema call as a failure.</li>
+    <li>Treat a result containing "does not exist" as an error.</li>
+    <li>Add a checkpointer if any subagent can interrupt. That's what makes resume skip finished work.</li>
+    <li>Put approval on the <code>eval</code> tool if subagents can do anything costly. Per-dispatch approvals won't fire.</li>
+    <li>Watch the custom stream for <code>{type: "subagent", phase: "start" | "complete" | "error"}</code> events to show a live fan-out view.</li>
+  </ul>
+</section>
+
+<footer>
+  <span>Method: deepagents 0.7.23, langchain-quickjs 0.3.8, langgraph 1.2.14. Mechanics used deterministic fake models. Real-model runs drove Claude through the CLI because no API key was available, so treat schema-compliance rates from those runs as indicative only.</span>
+  <span>Sources: LangChain docs (<a href="https://docs.langchain.com/oss/python/deepagents/dynamic-subagents">dynamic subagents</a>, <a href="https://docs.langchain.com/oss/python/deepagents/interpreters">interpreters</a>), the <a href="https://langchain.com/blog/introducing-dynamic-subagents-in-deep-agents">launch post</a>, and the <code>langchain_quickjs</code> source.</span>
+</footer>
+
+</div>

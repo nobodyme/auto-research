@@ -1,0 +1,74 @@
+
+===== long_sequential =====
+/home/user/auto-research/deepagents-dynamic-subagents-vs-claude-workflows/exp_state.py:105: LangChainBetaWarning: The class `CodeInterpreterMiddleware` is in beta. It is actively being worked on, so the API may change.
+  middleware=[CodeInterpreterMiddleware()],
+{
+  "wall_s": 8.97,
+  "eval_result": "<result>8</result>"
+}
+
+===== persistence =====
+{
+  "thread": "<result>report still here: [\"[worker] handled: analyse x\",\"[worker] handled: analyse y\"]</result>",
+  "turn": "<result>report LOST</result>"
+}
+
+===== interrupt_resume =====
+{
+  "phase1_events": [
+    [
+      "start",
+      "job-1"
+    ],
+    [
+      "start",
+      "job-3"
+    ],
+    [
+      "start",
+      "job-4"
+    ],
+    [
+      "start",
+      "job-2 ASK"
+    ]
+  ],
+  "interrupt_payload": [
+    {
+      "question": "approve?"
+    }
+  ],
+  "phase2_events_after_resume": [
+    [
+      "start",
+      "job-1"
+    ],
+    [
+      "start",
+      "job-3"
+    ],
+    [
+      "start",
+      "job-4"
+    ],
+    [
+      "end",
+      "job-2 ASK"
+    ],
+    [
+      "end",
+      "job-1"
+    ],
+    [
+      "end",
+      "job-3"
+    ],
+    [
+      "end",
+      "job-4"
+    ]
+  ],
+  "final_eval_result": [
+    "<result>[\"job-1 done\", \"job-2 ASK -&gt; human said yes\", \"job-3 done\", \"job-4 done\"]</result>"
+  ]
+}

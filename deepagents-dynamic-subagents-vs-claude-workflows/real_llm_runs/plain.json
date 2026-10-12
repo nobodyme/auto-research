@@ -1,0 +1,142 @@
+{
+  "prompt": "plain",
+  "wall_s": 45.7,
+  "coordinator_tool_calls": [
+    "eval",
+    "eval",
+    "eval"
+  ],
+  "eval_calls": 3,
+  "dispatches_from_code(task())": 13,
+  "dispatches_via_plain_task_tool": 0,
+  "subagent_errors": [],
+  "eval_code": [
+    "const tickets = [\n{id:\"T1\",text:\"The app crashes every time I upload a PNG larger than 5MB.\",kind:\"bug\"},\n{id:\"T2\",text:\"Please add a dark mode to the dashboard.\",kind:\"feature\"},\n{id:\"T3\",text:\"How do I export my invoices as CSV?\",kind:\"question\"},\n{id:\"T4\",text:\"Checkout returns HTTP 500 when the cart has more than 20 items.\",kind:\"bug\"},\n{id:\"T5\",text:\"It would be great to have SSO with Okta.\",kind:\"feature\"},\n{id:\"T6\",text:\"Where can I change my notification email?\",kind:\"question\"}];\nconst agent = {bug:\"bug-fixer\",feature:\"feature-analyst\",question:\"support-agent\"};\nconst ask = {bug:\"Propose the likely cause and next step.\",feature:\"Evaluate effort and impact.\",question:\"Answer the how-to question.\"};\nconst results = await Promise.all(tickets.map(async t => {\n  const r = await task({\n    description: \"Support ticket \" + t.id + \": \\\"\" + t.text + \"\\\". \" + ask[t.kind] + \" Reply with a single concise sentence.\",\n    subagentType: agent[t.kind],\n    label: t.id + \" -> \" + agent[t.kind],\n    responseSchema:{type:\"object\",properties:{outcome:{type:\"string\"}},required:[\"outcome\"]}\n  });\n  return {id:t.id, kind:t.kind, agent:agent[t.kind], outcome:r.outcome};\n}));\nresults",
+    "const raw = await task({description:\"Support ticket T1: \\\"The app crashes every time I upload a PNG larger than 5MB.\\\" Propose the likely cause and next step. Reply with a single concise sentence.\",subagentType:\"bug-fixer\",label:\"T1 raw probe\"});\nconsole.log(typeof raw, JSON.stringify(raw));\nraw",
+    "const results2 = await Promise.all(tickets.map(async t => {\n  const r = await task({\n    description: \"Support ticket \" + t.id + \": \\\"\" + t.text + \"\\\". \" + ask[t.kind] + \" Reply with a single concise sentence.\",\n    subagentType: agent[t.kind],\n    label: t.id + \" -> \" + agent[t.kind]\n  });\n  return {id:t.id, kind:t.kind, agent:agent[t.kind], outcome:typeof r === 'string' ? r : JSON.stringify(r)};\n}));\nresults2"
+  ],
+  "final_answer": "All six tickets are classified and have been handled by the matching specialist.\n\n- **T1 (bug, bug-fixer):** The upload path probably has a size limit or an unhandled exception or out-of-memory error when it decodes PNGs over 5MB. Next step: reproduce with a PNG just over 5MB and check the stack trace and upload limits.\n- **T2 (feature, feature-analyst):** Dark mode is medium effort (theme tokens, CSS refactor, saving the user's preference). Impact is medium-high.\n- **T3 (question, support-agent):** In Billing/Invoices, open the invoice list and choose Export or Download, then CSV. If the option is missing, check the \"...\" menu.\n- **T4 (bug, bug-fixer):** Checkout probably has a 20-item limit or size-dependent code path that throws an unhandled exception. Next step: reproduce with a 21-item cart and pull the server stack trace for the 500.\n- **T5 (feature, feature-analyst):** Okta SSO (SAML/OIDC) is medium effort. Impact is medium-high for enterprise deals but limited to fewer customers.\n- **T6 (question, support-agent):** Go to Account Settings (or Profile) > Notifications or Contact Email. If you can't find it, contact support.\n\nThe specialists' answers for T3 and T6 are generic, because they had no access to the real app. Check them against the actual UI before sending them to customers.\n\nMy first run returned no outcome text because I requested a structured format the subagents didn't return. I reran without it, and the results above come from that second run.",
+  "cli_calls": 17,
+  "cost_usd": 0.2317,
+  "call_log": [
+    {
+      "tag": "coordinator",
+      "model": "sonnet",
+      "secs": 10.4,
+      "cost_usd": 0.0583561,
+      "n_tool_calls": 1
+    },
+    {
+      "tag": "feature-analyst",
+      "model": "haiku",
+      "secs": 6.3,
+      "cost_usd": 0.00155099,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "support-agent",
+      "model": "haiku",
+      "secs": 6.8,
+      "cost_usd": 0.00152999,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "feature-analyst",
+      "model": "haiku",
+      "secs": 7.0,
+      "cost_usd": 0.0015571900000000002,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "bug-fixer",
+      "model": "haiku",
+      "secs": 7.3,
+      "cost_usd": 0.00158449,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "bug-fixer",
+      "model": "haiku",
+      "secs": 8.1,
+      "cost_usd": 0.00158909,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "support-agent",
+      "model": "haiku",
+      "secs": 8.4,
+      "cost_usd": 0.0016673900000000001,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "coordinator",
+      "model": "sonnet",
+      "secs": 6.1,
+      "cost_usd": 0.05081100000000001,
+      "n_tool_calls": 1
+    },
+    {
+      "tag": "bug-fixer",
+      "model": "haiku",
+      "secs": 3.0,
+      "cost_usd": 0.00154129,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "coordinator",
+      "model": "sonnet",
+      "secs": 5.0,
+      "cost_usd": 0.047884399999999994,
+      "n_tool_calls": 1
+    },
+    {
+      "tag": "feature-analyst",
+      "model": "haiku",
+      "secs": 3.7,
+      "cost_usd": 0.00152819,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "feature-analyst",
+      "model": "haiku",
+      "secs": 4.0,
+      "cost_usd": 0.00153249,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "bug-fixer",
+      "model": "haiku",
+      "secs": 4.3,
+      "cost_usd": 0.0015610900000000002,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "support-agent",
+      "model": "haiku",
+      "secs": 4.8,
+      "cost_usd": 0.0016324900000000001,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "bug-fixer",
+      "model": "haiku",
+      "secs": 4.8,
+      "cost_usd": 0.0016174900000000003,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "support-agent",
+      "model": "haiku",
+      "secs": 5.1,
+      "cost_usd": 0.0016378900000000001,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "coordinator",
+      "model": "sonnet",
+      "secs": 6.1,
+      "cost_usd": 0.0541554,
+      "n_tool_calls": 0
+    }
+  ]
+}

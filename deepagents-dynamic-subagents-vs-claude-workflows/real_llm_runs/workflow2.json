@@ -1,0 +1,168 @@
+{
+  "prompt": "workflow2",
+  "wall_s": 50.9,
+  "coordinator_tool_calls": [
+    "eval",
+    "eval"
+  ],
+  "eval_calls": 2,
+  "dispatches_from_code(task())": 18,
+  "dispatches_via_plain_task_tool": 0,
+  "subagent_errors": [],
+  "eval_code": [
+    "const tickets = [[\"T1\",\"The app crashes every time I upload a PNG larger than 5MB.\"],[\"T2\",\"Please add a dark mode to the dashboard.\"],[\"T3\",\"How do I export my invoices as CSV?\"],[\"T4\",\"Checkout returns HTTP 500 when the cart has more than 20 items.\"],[\"T5\",\"It would be great to have SSO with Okta.\"],[\"T6\",\"Where can I change my notification email?\"]];\nconst specialist = {bug:\"bug-fixer\", feature:\"feature-analyst\", question:\"support-agent\"};\nconst cls = await Promise.all(tickets.map(async ([id,text]) => {\n  const r = await task({description:\"Classify this support ticket as exactly one of: bug, feature, question.\\nTicket: \"+text, subagentType:\"general-purpose\", label:\"classify \"+id, responseSchema:{type:\"object\",properties:{category:{type:\"string\",enum:[\"bug\",\"feature\",\"question\"]}},required:[\"category\"]}});\n  return {id,text,category:r.category};\n}));\nconst out = await Promise.all(cls.map(async t => {\n  const r = await task({description:\"Handle this support ticket (\"+t.id+\", classified as \"+t.category+\"): \"+t.text+\"\\nReturn a single-line outcome (likely cause/next step, effort/impact, or answer).\", subagentType:specialist[t.category], label:t.id+\" \"+t.category, responseSchema:{type:\"object\",properties:{outcome:{type:\"string\"}},required:[\"outcome\"]}});\n  return t.id+\" [\"+t.category+\" -> \"+specialist[t.category]+\"]: \"+r.outcome;\n}));\nout.join(\"\\n\")",
+    "const raw = await Promise.all(cls.map(t => task({description:\"Handle this support ticket (\"+t.id+\", classified as \"+t.category+\"): \"+t.text+\"\\nReply with a single-line outcome (likely cause/next step, effort/impact, or answer).\", subagentType:specialist[t.category], label:t.id+\" \"+t.category}).then(r=>({id:t.id,type:typeof r,r}))));\nraw.map(x=>x.id+\" \"+x.type+\": \"+(typeof x.r===\"string\"?x.r:JSON.stringify(x.r)).slice(0,300)).join(\"\\n\")"
+  ],
+  "final_answer": "I classified all six tickets and sent each to the matching specialist. Outcomes:\n\n- **T1 (bug \u2192 bug-fixer):** Probably an unhandled 5MB size limit in the upload path. Reproduce with a PNG just over 5MB, pull the crash stack trace, and check the upload handler and middleware.\n- **T2 (feature \u2192 feature-analyst):** Medium effort (theme tokens, a toggle, and a saved preference). Medium impact as a common, visible UX request.\n- **T3 (question \u2192 support-agent):** Look for an Export/Download CSV option under Billing or Invoices in account settings. The agent couldn't verify the exact UI, so confirm with the docs or an engineer before replying.\n- **T4 (bug \u2192 bug-fixer):** Probably a hard-coded 20-item limit (batch size, pagination cap, or payment-provider cap) that throws an unhandled exception. Reproduce with a 21-item cart and check the server logs at that boundary.\n- **T5 (feature \u2192 feature-analyst):** Medium-to-large effort (SAML/OIDC plus provisioning) with high impact, since Okta SSO often gates enterprise security reviews. The agent didn't check the codebase or existing auth support.\n- **T6 (question \u2192 support-agent):** Go to Account Settings, then Notifications or Contact Email. This path is unverified for this product, so confirm the menu path with the product team before replying.\n\nThe first run returned \"undefined\" for every outcome. This happened because the structured-output schema didn't come back from the specialists. I re-ran the specialist step without the schema and got the plain-text answers above. The classifications from the first run are unchanged.",
+  "cli_calls": 21,
+  "cost_usd": 0.2899,
+  "call_log": [
+    {
+      "tag": "coordinator",
+      "model": "sonnet",
+      "secs": 10.6,
+      "cost_usd": 0.023356799999999997,
+      "n_tool_calls": 1
+    },
+    {
+      "tag": "coordinator",
+      "model": "sonnet",
+      "secs": 7.4,
+      "cost_usd": 0.0216653,
+      "n_tool_calls": 1
+    },
+    {
+      "tag": "coordinator",
+      "model": "sonnet",
+      "secs": 7.5,
+      "cost_usd": 0.0217613,
+      "n_tool_calls": 1
+    },
+    {
+      "tag": "coordinator",
+      "model": "sonnet",
+      "secs": 8.9,
+      "cost_usd": 0.024475300000000002,
+      "n_tool_calls": 1
+    },
+    {
+      "tag": "coordinator",
+      "model": "sonnet",
+      "secs": 9.2,
+      "cost_usd": 0.024113700000000002,
+      "n_tool_calls": 1
+    },
+    {
+      "tag": "coordinator",
+      "model": "sonnet",
+      "secs": 9.5,
+      "cost_usd": 0.024281100000000003,
+      "n_tool_calls": 1
+    },
+    {
+      "tag": "coordinator",
+      "model": "sonnet",
+      "secs": 9.7,
+      "cost_usd": 0.0238104,
+      "n_tool_calls": 1
+    },
+    {
+      "tag": "support-agent",
+      "model": "haiku",
+      "secs": 4.3,
+      "cost_usd": 0.00165239,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "feature-analyst",
+      "model": "haiku",
+      "secs": 4.5,
+      "cost_usd": 0.0017053900000000002,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "support-agent",
+      "model": "haiku",
+      "secs": 4.7,
+      "cost_usd": 0.00165249,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "bug-fixer",
+      "model": "haiku",
+      "secs": 5.0,
+      "cost_usd": 0.0016834900000000002,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "feature-analyst",
+      "model": "haiku",
+      "secs": 5.0,
+      "cost_usd": 0.00168069,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "bug-fixer",
+      "model": "haiku",
+      "secs": 5.3,
+      "cost_usd": 0.00174639,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "coordinator",
+      "model": "sonnet",
+      "secs": 9.6,
+      "cost_usd": 0.054316,
+      "n_tool_calls": 1
+    },
+    {
+      "tag": "support-agent",
+      "model": "haiku",
+      "secs": 4.7,
+      "cost_usd": 0.00158709,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "feature-analyst",
+      "model": "haiku",
+      "secs": 4.9,
+      "cost_usd": 0.0016244900000000001,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "feature-analyst",
+      "model": "haiku",
+      "secs": 5.1,
+      "cost_usd": 0.00166529,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "support-agent",
+      "model": "haiku",
+      "secs": 5.6,
+      "cost_usd": 0.0016659900000000002,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "bug-fixer",
+      "model": "haiku",
+      "secs": 5.9,
+      "cost_usd": 0.0017080900000000002,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "bug-fixer",
+      "model": "haiku",
+      "secs": 8.0,
+      "cost_usd": 0.00176949,
+      "n_tool_calls": 0
+    },
+    {
+      "tag": "coordinator",
+      "model": "sonnet",
+      "secs": 6.0,
+      "cost_usd": 0.0519616,
+      "n_tool_calls": 0
+    }
+  ]
+}
